@@ -28,7 +28,7 @@ This sample uses 4 Azure Active Directory Applications.  Refer to the four docum
 
 When you are finished, the screen will indicate all permissions have been granted.
 
-![Permissions Granted](./images/web-app-aad-app-01.png)
+![Permissions Granted](./Images/web-app-aad-app-01.png)
 
 ## Grant consent for the Sample Outlook Add-in AAD Application
 
@@ -40,7 +40,7 @@ When you are finished, the screen will indicate all permissions have been grante
 
 When you are finished, the screen will indicate all permissions have been granted.
 
-![Permissions Granted](./images/outlook-add-in-aad-app-03.png)
+![Permissions Granted](./Images/outlook-add-in-aad-app-03.png)
 
 ## Deploy the ARM Template with PowerShell
 
