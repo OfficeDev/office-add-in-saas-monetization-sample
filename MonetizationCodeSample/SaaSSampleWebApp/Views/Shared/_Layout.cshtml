@@ -1,0 +1,62 @@
+﻿@*
+Copyright (c) Microsoft Corporation.
+Licensed under the MIT License.
+*@
+
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Contoso Monetization Code Sample</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.min.css" />
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.components.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <svg width="29" height="38" viewBox="0 0 29 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M29 28.9439C29 23.9897 26.306 19.7103 22.4091 17.7171V10.3568C22.4091 9.68645 22.1908 9.03832 21.7871 8.5278L15.5092 0.506075C15.2456 0.168692 14.8707 0 14.5 0C14.1293 0 13.7544 0.168692 13.4908 0.506075L7.21293 8.5278C6.81198 9.03936 6.59167 9.68715 6.59091 10.3568V17.7171C2.69403 19.7103 0 23.9897 0 28.9439H6.44673C6.35199 29.2636 6.30256 29.6098 6.30256 30.0005C6.30256 30.9815 6.61562 31.9404 7.18409 32.6995C7.6481 33.3204 8.26263 33.7906 8.95952 34.0579C9.91108 36.4551 12.0737 38 14.5 38C15.6987 38 16.8604 37.6182 17.8531 36.8991C18.8253 36.1977 19.5791 35.2166 20.0364 34.0579C20.733 33.7922 21.3475 33.3235 21.8118 32.704C22.381 31.938 22.6918 30.9863 22.6933 30.0049C22.6933 29.632 22.648 29.2769 22.5656 28.9484L29 28.9439ZM6.75568 25.9252H3.2625C3.48906 25.2016 3.80213 24.5047 4.18935 23.8565C4.8608 22.7379 5.73409 21.7923 6.75568 21.0731V25.9252ZM9.39205 17.7171V10.4234L14.5 3.89766L19.608 10.4234V25.9252H9.39205V17.7171ZM19.2825 31.0836C19.0683 31.2168 18.8212 31.2701 18.5781 31.2346L17.7749 31.128L17.6595 31.9893C17.4371 33.6717 16.0777 34.9414 14.5 34.9414C12.9223 34.9414 11.5629 33.6717 11.3405 31.9893L11.2251 31.1236L10.4219 31.2346C10.1777 31.2659 9.9306 31.2114 9.71747 31.0792C9.35909 30.8572 9.13665 30.4444 9.13665 29.996C9.13665 29.5255 9.37969 29.1348 9.73807 28.9395H19.2661C19.6286 29.1393 19.8675 29.5299 19.8675 29.996C19.8634 30.4488 19.6409 30.8661 19.2825 31.0836ZM22.2443 25.9252V21.0731C23.272 21.7959 24.1466 22.7444 24.8107 23.8565C25.1979 24.5047 25.5109 25.2016 25.7375 25.9252H22.2443Z" fill="black" />
+            </svg>
+            <span><a href="/">Contoso</a></span>
+        </div>
+        <div class="login">
+            <partial name="_LoginPartial" />
+        </div>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+    <footer>
+        Copyright 2020 | www.contoso2k.com
+    </footer>
+
+    <div id="messageDialog" class="ms-Dialog ms-Dialog--blocking">
+        <div class="ms-Dialog-title">Message</div>
+        <div class="ms-Dialog-content">
+            <p></p>
+        </div>
+        <div class="ms-Dialog-actions">
+            <button class="ms-Button ms-Dialog-action">
+                <span class="ms-Button-label">Close</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
+    <script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>
+    <script>
+        var apiRootEndpoint = "@Configuration["SaaSWebApi:BaseAddress"]/api";
+    </script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

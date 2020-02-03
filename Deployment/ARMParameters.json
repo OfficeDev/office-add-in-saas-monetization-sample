@@ -1,0 +1,63 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "webAppSiteName": {
+        "value": "contosomonetizationwebapp"
+      },
+      "webApiSiteName": {
+        "value": "contosomonetizationwebapi"
+      },
+      "outlookAddInWebSiteName": {
+        "value": "contosomonetizationoutlookaddin"
+      },
+      "resourceMockWebSiteName": {
+        "value": "contosomonetizationappsource"
+      },
+      "domainName": {
+        "value": "<AzureAD domain name>"
+      },
+      "directoryId": {
+        "value": "<directoryId>"
+      },
+      "sqlAdministratorLogin": {
+        "value": "<db username>"
+      },
+      "sqlAdministratorLoginPassword": {
+        "value": "<db password>"
+      },
+      "sqlMockDatabaseName": {
+        "value": "AppSourceMockWebAppDB"
+      },
+      "sqlSampleDatabaseName": {
+        "value": "MonetizationSampleDB"
+      },
+      "webAppClientId": {
+        "value": "<webAppClientId>"
+      },
+      "webAppClientSecret": {
+        "value": "<webAppClientSecret>"
+      },
+      "webApiClientId": {
+        "value": "<webApiClientId>"
+      },
+      "webApiClientSecret": {
+        "value": "<webApiClientSecret>"
+      },
+      "webApiIdentifierUri": {
+        "value": "api://xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+      },
+      "outlookAddinClientId": {
+        "value": "<outlookAddinClientId>"
+      },
+      "outlookAddinClientSecret": {
+        "value": "<outlookAddinClientSecret>"
+      },
+      "sourceMockClientId": {
+        "value": "<sourceMockClientId>"
+      },
+      "tenantId": {
+        "value": "organizations"
+      }
+    }
+  }

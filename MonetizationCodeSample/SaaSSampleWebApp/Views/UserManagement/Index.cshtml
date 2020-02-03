@@ -1,0 +1,75 @@
+﻿@*
+Copyright (c) Microsoft Corporation.
+Licensed under the MIT License.
+*@
+
+@{
+    ViewData["Title"] = "User Management Page";
+}
+
+<div class="user-management">
+    <h3>Manage Users</h3>
+    <div>
+        <table class="ms-Table mt-5 mb-5">
+            <thead>
+                <tr>
+                    <th style="width: 400px">User e-mails</th>
+                    <th style="width: 300px">User type</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="assignedusers">
+            </tbody>
+        </table>
+        <span class="ms-Link" id="addNewButton">Add user +</span>
+    </div>
+
+    <div id="assignDialog" class="ms-Dialog">
+        <div class="ms-Dialog-content">
+            <h1>Email address required</h1>
+            <p>An email address is required to assign a license.</p>
+            <div class="d-flex flex-row">
+                <div class="ms-TextField">
+                    <label class="ms-Label">Email address:</label>
+                    <input id="email" class="ms-TextField-field" type="text" value="" placeholder="">
+                </div>
+                <div id="adminSelect" class="ms-Toggle">
+                    <span class="ms-Toggle-description"></span>
+                    <input type="checkbox" id="demo-toggle-3" class="ms-Toggle-input" />
+                    <label for="demo-toggle-3" class="ms-Toggle-field">
+                        <span class="ms-Label ms-Label--off">Can manage licenses</span>
+                        <span class="ms-Label ms-Label--on">Can manage licenses</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="ms-Dialog-actions">
+            <button id="assignButton" class="ms-Button ms-Dialog-action ms-Button--primary">
+                <span class="ms-Button-label">Assign</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="confirmationDialog" class="ms-Dialog">
+        <div class="ms-Dialog-content">
+            <h1>Confirm removal</h1>
+            <p>Please confirm you would like to remove the following user?</p>
+            <span></span>
+        </div>
+        <div class="ms-Dialog-actions">
+            <button class="ms-Button ms-Button--gray ms-Dialog-action">
+                <span class="ms-Button-label">No</span>
+            </button>
+            <button id="YesButton" class="ms-Button ms-Button--primary ms-Dialog-action">
+                <span class="ms-Button-label">Yes</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        var subscriptionId = '@ViewData["subscriptionId"].ToString()';
+    </script>
+    <script src="~/js/usermanagement.js"></script>
+}

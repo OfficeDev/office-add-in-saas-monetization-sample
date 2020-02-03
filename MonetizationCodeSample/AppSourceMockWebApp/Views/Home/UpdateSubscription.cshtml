@@ -1,0 +1,77 @@
+﻿@*
+Copyright (c) Microsoft Corporation.
+Licensed under the MIT License.
+*@
+
+@model AppSourceMockWebApp.Models.UpdateSubscriptionViewModel
+@using  AppSourceMockWebApp.Models
+
+<h3 class="mt-5 mb-5">Marketplace initiated update: @Model.Subscription.Name</h3>
+
+<form>
+    <input type="hidden" asp-for="@Model.Subscription.Id" />
+
+    @if (Model.OperationUpdateId.HasValue)
+    {
+        <div class="text-center mr-5">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="mt-5">
+                Waiting to process your updates for the subscription.
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Licence Type</label>
+            <select class="form-control" asp-for="@Model.Subscription.PlanId" asp-items="@Model.PlanList"></select>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" min="1" max="50" class="form-control" id="quantity" placeholder="" data-quantity="@Model.Subscription.Quantity" asp-for="@Model.Subscription.Quantity">
+        </div>
+
+        <button type="submit" class="btn btn-primary" formaction="/Home/UpdateSubscription" formmethod="post">Update Subscription</button>
+        <button type="submit" class="btn btn-primary" formaction="/Home/CancelSubscription" formmethod="post">Cancel Subscription</button>
+    }
+</form>
+
+<script>
+    var operationId = "@Model.OperationUpdateId?.ToString()";
+    var quantityInputHtmlElement = document.querySelector("#quantity");
+    var licenceTypeHtmlElement = document.querySelector("select");
+
+    var licenseTypeChangedHandler = function () {
+        if (licenceTypeHtmlElement.selectedIndex === 1) {
+            quantityInputHtmlElement.disabled = true;
+            quantityInputHtmlElement.value = "";
+        }
+        else {
+            quantityInputHtmlElement.disabled = false;
+            quantityInputHtmlElement.value = quantityInputHtmlElement.attributes["data-quantity"].value || 5;
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        if (operationId) {
+            window.setInterval(async () => {
+                const getOperationStatus = await fetch('/api/saas/subscriptions/@Model.Subscription.Id/operations/@Model.OperationUpdateId.GetValueOrDefault()');
+                if (getOperationStatus.status === 200) {
+                    var operation = await getOperationStatus.json();
+                    console.log(operation.status);
+                    if (operation.status === "Succeeded") {
+                        location.href = "/";
+                    }
+                }
+                
+            }, 500);
+        }
+        else {
+            licenceTypeHtmlElement.addEventListener("change", () => licenseTypeChangedHandler());
+            licenseTypeChangedHandler();
+        }
+    });
+</script>
+

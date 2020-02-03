@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "saa-s-sample-web-part-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/saaSSampleWebPart/SaaSSampleWebPartWebPart.js",
+          "manifest": "./src/webparts/saaSSampleWebPart/SaaSSampleWebPartWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "SaaSSampleWebPartWebPartStrings": "lib/webparts/saaSSampleWebPart/loc/{locale}.js"
+  }
+}

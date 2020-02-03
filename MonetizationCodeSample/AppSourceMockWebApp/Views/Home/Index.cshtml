@@ -1,0 +1,36 @@
+﻿@*
+Copyright (c) Microsoft Corporation.
+Licensed under the MIT License.
+*@
+
+@using  AppSourceMockWebApp.Models
+
+@{ 
+    var appOffers = ViewBag.apps as List<SaaSOfferMockData.Offer>;
+}
+
+<h3 class="mt-5 mb-5">Featured Apps</h3>
+
+<div class="d-flex flex-row">
+    @foreach (var app in appOffers)
+    {
+        <div class="card mr-5" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@app.Name</h5>
+                <div class="d-flex flex-row mb-4 mt-4">
+                    <div class="ms-BrandIcon--icon48 ms-BrandIcon--outlook mr-4"></div><div class="ms-BrandIcon--icon48 ms-BrandIcon--sharepoint"></div>
+                </div>
+                <a asp-controller="Home" asp-action="App" asp-route-OfferID="@app.OfferID" class="btn btn-primary">Purchase</a>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="mt-5">
+    <p>
+        Notes: This site is just to demonstrate how to monetize your Office 365 add-in through Microsoft Commercial Marketplace
+        when your SaaS offer is in the approval process, once your SaaS offer is appoved, you should refer to
+        <a href="https://docs.microsoft.com/en-us/office/dev/store/monetize-addins-through-microsoft-commercial-marketplace">Monetize your Office 365 add-in through Microsoft Commercial Marketplace.</a>
+    </p>
+</div>
+

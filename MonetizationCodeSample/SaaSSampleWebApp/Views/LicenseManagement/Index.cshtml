@@ -1,0 +1,122 @@
+﻿@*
+Copyright (c) Microsoft Corporation.
+Licensed under the MIT License.
+*@
+
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "License Management Page";
+}
+
+<div class="user-management">
+    <h3>Manage Licenses</h3>
+    <section id="siteBasedSection">
+        <p class="mb-5">
+            You have purchased a site license. All users within your organisation can access this service through.
+        </p>
+        <a href="@Configuration["AppSource"]Home/UpdateSubscription?subscriptionId=@ViewData["subscriptionId"].ToString()">Go to AppSource to change plan</a>
+    </section>
+    <section id="seatBasedSection">
+        @if (ViewData["Role"].ToString() == "LicenseAdmin")
+        {
+            <div class="d-flex flex-row">
+                <div id="fcfsSelect" class="ms-Toggle mr-5">
+                    <span class="ms-Toggle-description">First come first served</span>
+                    <input type="checkbox" id="demo-toggle-1" class="ms-Toggle-input" />
+                    <label for="demo-toggle-1" class="ms-Toggle-field">
+                        <span class="ms-Label ms-Label--off">Disabled</span>
+                        <span class="ms-Label ms-Label--on">Enabled</span>
+                    </label>
+                </div>
+                <div id="aoaSelect" class="ms-Toggle mr-5 ml-5">
+                    <span class="ms-Toggle-description">Allow over assignment</span>
+                    <input type="checkbox" id="demo-toggle-2" class="ms-Toggle-input" />
+                    <label for="demo-toggle-2" class="ms-Toggle-field">
+                        <span class="ms-Label ms-Label--off">Disabled</span>
+                        <span class="ms-Label ms-Label--on">Enabled</span>
+                    </label>
+                </div>
+            </div>
+        }
+        <div class="d-flex flex-row align-items-end">
+            <div class="quantitylist mr-5">
+                <ul>
+                    <li><label>Purchased License Quantity:</label><span id="licenseQuantity"></span></li>
+                    <li><label>Available License Quantity:</label><span id="availableLicenseQuantity"></span></li>
+                    <li><label>Assigned License Quantity:</label><span id="assignedLicenseQuantity"></span></li>
+                </ul>
+            </div>
+            @if (ViewData["Role"].ToString() == "LicenseAdmin")
+            {
+                <div class="d-flex flex-row align-items-end ml-5 purchase">
+                    <div class="ms-TextField mr-4">
+                        <label class="ms-Label">Add Licenses</label>
+                        <input id="addLicenseCount" class="ms-TextField-field" type="number" value="0" min="1" max="100" />
+                    </div>
+                    <button id="purchaseLicenseButton" class="ms-Button ms-Button--primary ms-Button--small">
+                        <span class="ms-Button-label">Purchase</span>
+                    </button>
+                </div>
+            }
+        </div>
+        <table class="ms-Table mt-3 mb-5">
+            <thead>
+                <tr>
+                    <th style="width: 400px">User e-mails</th>
+                    <th style="width: 300px">Active this month</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="assignedusers">
+            </tbody>
+        </table>
+
+        @if (ViewData["Role"].ToString() == "LicenseAdmin")
+        {
+            <span class="ms-Link" id="addNewButton">Add user +</span>
+        }
+    </section>
+
+    <div id="assignDialog" class="ms-Dialog">
+        <div class="ms-Dialog-content">
+            <h1>Email address required</h1>
+            <p>An email address is required to assign a license.</p>
+            <div class="d-flex flex-row">
+                <div class="ms-TextField">
+                    <label class="ms-Label">Email address:</label>
+                    <input id="email" class="ms-TextField-field" type="text" value="" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="ms-Dialog-actions">
+            <button id="assignButton" class="ms-Button ms-Dialog-action ms-Button--primary">
+                <span class="ms-Button-label">Assign</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="confirmationDialog" class="ms-Dialog">
+        <div class="ms-Dialog-content">
+            <h1>Assignment Removal</h1>
+            <p>Please confirm you would like to remove the following user?</p>
+            <span></span>
+        </div>
+        <div class="ms-Dialog-actions">
+            <button class="ms-Button ms-Button--gray ms-Dialog-action">
+                <span class="ms-Button-label">No</span>
+            </button>
+            <button id="YesButton" class="ms-Button ms-Button--primary ms-Dialog-action">
+                <span class="ms-Button-label">Yes</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        var subscriptionId = '@ViewData["subscriptionId"].ToString()';
+        var isLicenseAdmin = '@ViewData["Role"]' === "LicenseAdmin";
+    </script>
+    <script src="~/js/licensemanagement.js"></script>
+}

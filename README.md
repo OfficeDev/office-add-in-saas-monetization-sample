@@ -1,64 +1,45 @@
----
-page_type: sample
-languages:
-- csharp
-products:
-- dotnet
-description: "Add 150 character max description"
-urlFragment: "update-this-to-unique-url-stub"
----
+# Introduction 
+This code sample demonstrates how Microsoft ISVs can create a simple license management system to manage add-ins sold in Microsoft AppSource.
 
-# Official Microsoft Sample
+# Installation and Configuration
+Follow the instructions in the deployment guides to install and configure the sample.
 
-<!-- 
-Guidelines on README format: https://review.docs.microsoft.com/help/onboard/admin/samples/concepts/readme-template?branch=master
+1. [Sample Deployment Guide](/Deployment/DeploymentGuide.md)
+2. [SPFx add-in Deployment Guide](/Deployment/SPFx/DeploymentGuide.md)
+3. [Outlook add-in Deployment Guide](/Deployment/AddIn/DeploymentGuide.md)
 
-Guidance on onboarding samples to docs.microsoft.com/samples: https://review.docs.microsoft.com/help/onboard/admin/samples/process/onboarding?branch=master
+# Testing
+Follow the instructions in the test guide to test the different use cases.
 
-Taxonomies for products and languages: https://review.docs.microsoft.com/new-hope/information-architecture/metadata/taxonomies?branch=master
--->
+1. [Test Guide](/Test/TestGuide.md)
 
-Give a short description for your sample here. What does it do and why is it important?
+# Inventory
+This section links to the various README files associated with the projects included in the sample.  Read the README files for more information about each project.
 
-## Contents
+- [AppSourceMockWebApp](/MonetizationCodeSample/AppSourceMockWebApp/README.md)
+- [Microsoft.Identity.Web](/MonetizationCodeSample/Microsoft.Identity.Web/README.md)
+- [MockAppData](/MonetizationCodeSample/MockAppData/README.md)
+- [OutlookWebAddIn](/MonetizationCodeSample/OutlookWebAddIn/README.md)
+- [OutlookWebAddInWeb](/MonetizationCodeSample/OutlookWebAddInWeb/README.md)
+- [SaaSSampleWebApi](/MonetizationCodeSample/SaaSSampleWebApi/README.md)
+- [SaaSSampleWebApp](/MonetizationCodeSample/AppSourceMockWebApp/README.md)
+- [SPFXAddIn](/MonetizationCodeSample/SPFXAddIn/README.md)
 
-Outline the file contents of the repository. It helps users navigate the codebase, build configuration and any related assets.
+# Appendix
 
-| File/folder       | Description                                |
-|-------------------|--------------------------------------------|
-| `src`             | Sample source code.                        |
-| `.gitignore`      | Define what to ignore at commit time.      |
-| `CHANGELOG.md`    | List of changes to the sample.             |
-| `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
-| `README.md`       | This README file.                          |
-| `LICENSE`         | The license for the sample.                |
+## UX / API Mapping
 
-## Prerequisites
+This matrix describes the user interface actions and how they correlate to different API calls.
 
-Outline the required components and tools that a user might need to have on their machine in order to run the sample. This can be anything from frameworks, SDKs, OS versions or IDE releases.
+| User interface where the API is invoked  | API Call                                                                                                                                                                                                                                                                                                                                                                    | Mock API Exists | Mock API Works | Can we test the Mock API without the offer being published to the public? | Can we test the Production API without the offer being published to the public? |
+|------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|----------------|---------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| ![](images/contoso_app_purchase.png)     | Resolve a subscription in purchase process: <br/><br/>HttpPost<br/> https://marketplaceapi.microsoft.com/api/saas/subscriptions/resolve?api-version=2018-09-15                                                                                                                                                                                                              | Yes             | Yes            | Yes                                                                       | No                                                                              |
+| ![](images/contoso_app_purchase.png)     | Activate a subscription in purchase process:<br/><br/>HttpPost<br/> https://marketplaceapi.microsoft.com/api/saas/subscriptions/0aa95e32-8be7-4e5e-94f9-563f6d7d9dcd/activate?api-version=2018-09-15                                                                                                                                                                        | Yes             | Yes            | Yes                                                                       | No                                                                              |
+| ![](images/contoso_app_quantity.png)     | Update the quantity on the subscription in plan/quantity changed process<br/><br/>HttpPatch<br/> https://marketplaceapi.microsoft.com/api/saas/subscriptions/0aa95e32-8be7-4e5e-94f9-563f6d7d9dcd?api-version=2018-09-15 <br/><br/> Note: Although the patch request works, but actually the test data will not be updated, and the web hook will not be triggered as well. | Yes             | Yes            | No                                                                        | No                                                                              |
+| ![](images/contoso_app_quantity.png)     | Update the status of an operation in plan/quantity changed process<br/><br/>HttpPatch<br/> https://marketplaceapi.microsoft.com/api/saas/subscriptions/0aa95e32-8be7-4e5e-94f9-563f6d7d9dcd/operations/7688ae05-1579-4fdd-be89-12b45f0a4ef3?api-version=2018-09-15                                                                                                          | Yes             | Yes            | No                                                                        | No                                                                              |
+| ![](images/contoso_app_quantity.png)     | Query operations in plan/quantity changed process<br/><br/>HttpPatch<br/> https://marketplaceapi.microsoft.com/api/saas/subscriptions/0aa95e32-8be7-4e5e-94f9-563f6d7d9dcd/operations?api-version=2018-09-15                                                                                                                                                                | Yes             | Yes            | Yes                                                                       | No                                                                              |
+| ![](images/contoso_app_quantity.png)     | Webhook on the SaaS service                                                                                                                                                                                                                                                                                                                                                 | No              | No             | No                                                                        | No                                                                              |
 
-## Setup
+# Copyright
 
-Explain how to prepare the sample once the user clones or downloads the repository. The section should outline every step necessary to install dependencies and set up any settings (for example, API keys and output folders).
-
-## Running the sample
-
-Outline step-by-step instructions to execute the sample and see its output. Include steps for executing the sample from the IDE, starting specific services in the Azure portal or anything related to the overall launch of the code.
-
-## Key concepts
-
-Provide users with more context on the tools and services used in the sample. Explain some of the code that is being used and how services interact with each other.
-
-## Contributing
-
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
-
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+Copyright (c) 2020 Microsoft Corporation. All rights reserved.

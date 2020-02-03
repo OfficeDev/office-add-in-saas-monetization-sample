@@ -1,0 +1,78 @@
+﻿@*
+Copyright (c) Microsoft Corporation.
+Licensed under the MIT License.
+*@
+
+@{
+    ViewData["Title"] = "ISV Management Page";
+}
+
+<div id="ISVManagement">
+    <section id="landingSection">
+        <h1>
+            Welcome
+            @Context.User.FindFirst(c => c.Type == "name").Value.
+        </h1>
+        <p class="mb-5 pl-1">
+            You are signed in as an Contoso admin.
+        </p>
+        <div class="action">
+            <a id="manageAccountButton" class="ms-Button ms-Button--primary" role="button">
+                <span class="ms-Button-label">Manage Accounts</span>
+            </a>
+        </div>
+    </section>
+
+    <section id="orgSection">
+        <h3 class="mb-5">
+            Purchase webpage
+        </h3>
+        <table class="ms-Table mt-3">
+            <thead>
+                <tr>
+                    <th>Organisation</th>
+                    <th>Organisation ID</th>
+                    <th>License Type</th>
+                    <th>Number of Licenses</th>
+                </tr>
+            </thead>
+            <tbody id="orgs">
+            </tbody>
+        </table>
+    </section>
+
+    <section id="orgDetailSection">
+        <nav>
+            <span class="ms-Link">ISV Management Accounts</span> >>> <span class="org">Company</span>
+        </nav>
+        <h3 class="org"></h3>
+        <p>
+            First come first served: <span></span>
+        </p>
+        <p>
+            Allow over assignment: <span></span>
+        </p>
+        <p>
+            Purchaser: <span></span>
+        </p>
+        <table class="ms-Table mt-5">
+            <thead>
+                <tr>
+                    <th style="width: 400px">User e-mails</th>
+                    <th style="width: 300px">Active this month</th>
+                </tr>
+            </thead>
+            <tbody id="assignedusers">
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/isvmanagement.js"></script>
+}

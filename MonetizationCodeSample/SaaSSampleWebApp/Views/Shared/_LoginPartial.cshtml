@@ -1,0 +1,34 @@
+﻿@*
+Copyright (c) Microsoft Corporation.
+Licensed under the MIT License.
+*@
+
+@using SaaSSampleWebApp.Components
+@using Microsoft.Identity.Web
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="ms-CommandButton">
+        <button class="ms-CommandButton-button">
+            <span class="ms-CommandButton-label">@Context.User.FindFirst(c => c.Type == "name").Value</span>
+            <span class="ms-CommandButton-dropdownIcon"><i class="ms-Icon ms-Icon--ChevronDown"></i></span>
+        </button>
+        <ul class="ms-ContextualMenu is-opened ms-ContextualMenu--hasIcons">
+            <li class="ms-ContextualMenu-item">
+                <a id="user" class="ms-ContextualMenu-link is-disabled" data-id="@User.Identity.Name">@await Component.InvokeAsync("User", new { IdentityName = User.Identity.Name })</a>
+            </li>
+            @if (Context.User.GetTenantId() == Configuration["AzureAd:DirectoryId"])
+            {
+                <li class="ms-ContextualMenu-item">
+                    <a class="ms-ContextualMenu-link" asp-controller="ISVManagement" asp-action="Index">ISV Management Dashboard</a>
+                </li>
+            }
+            <li class="ms-ContextualMenu-item">
+                <a class="ms-ContextualMenu-link" asp-area="AzureAD" asp-controller="Account" asp-action="SignOut">Logout</a>
+            </li>
+        </ul>
+    </div>
+}
+

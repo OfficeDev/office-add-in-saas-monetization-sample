@@ -1,0 +1,78 @@
+﻿@*
+Copyright (c) Microsoft Corporation.
+Licensed under the MIT License.
+*@
+
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "Fulfilment/Redemption Page";
+}
+
+@switch (ViewData["Section"].ToString())
+{
+    case "redirectFromAppSource":
+        <div class="fulfilment center">
+            <!-- redirect from AppSource  -->
+            <section id="redirectSection" class="wrapper-section">
+                <div class="content">
+                    <h1>Your purchase has been confirmed.</h1>
+                    <p>
+                        Please enter the following details to finish your account<br />set up.
+                    </p>
+                    <div class="ms-Dropdown" style="width: 337px">
+                        <label class="ms-Label">Location:</label>
+                        <i class="ms-Dropdown-caretDown ms-Icon ms-Icon--ChevronDown"></i>
+                        <select id="location" class="ms-Dropdown-select">
+                            <option>United States</option>
+                            <option>China</option>
+                            <option>Japan</option>
+                            <option> Germany</option>
+                            <option>United Kingdom</option>
+                            <option>France</option>
+                            <option>India</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="bottom-action">
+                    <button id="provisionButton" class="ms-Button ms-Button--primary" role="button" disabled>
+                        <span class="ms-Button-label">Provision</span>
+                    </button>
+                </div>
+            </section>
+        </div>
+        break;
+    case "firstLandingSection":
+        <!-- First time user, not from AppSource -->
+        <div class="fulfilment center">
+            <section class="wrapper-section">
+                <div class="content">
+                    <h1>
+                        Welcome @Context.User.FindFirst(c => c.Type == "name").Value.
+                    </h1>
+                    <p>
+                        You are signed in as an admin.
+                    </p>
+                </div>
+                <div class="bottom-action">
+                    <a href="@Configuration["AppSource"]" class="ms-Button ms-Button--primary" role="button">
+                        <span class="ms-Button-label">Buy Now</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+        break;
+    default:
+        <section class="text-center textContent">
+            <p class="mb-5">
+                Welcome <span>@Context.User.FindFirst(c => c.Type == "name").Value</span>. <br />Apologies, we’re having trouble completing your account sign up. Please try again.
+            </p>
+        </section>
+        break;
+}
+
+@section Scripts{
+    <script src="~/js/fulfilment.js"></script>
+}

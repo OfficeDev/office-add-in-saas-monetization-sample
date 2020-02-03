@@ -1,0 +1,425 @@
+﻿
+html {
+    position: relative;
+    min-height: 100%;
+    height: 100%;
+    font-size: 16px;
+}
+
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #000;
+    line-height: normal;
+}
+
+main {
+    flex: 1;
+    padding: 82px 32px;
+}
+
+h1 {
+    font-size: 48px;
+    line-height: 64px;
+}
+
+h3 {
+    font-size: 28px;
+    margin-bottom: 37px;
+}
+
+p {
+    font-size: 24px;
+}
+
+.ms-Dialog {
+    max-width: initial;
+    width: 950px;
+    padding-bottom: 0;
+}
+
+.ms-Dialog-content {
+    min-height: 250px;
+    padding-bottom: 30px;
+}
+
+.ms-Dialog-actions {
+    display: flex;
+    height: 91px;
+    background-color: rgba(233, 237, 243, 0.3);
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0 -24px;
+    padding: 0 24px;
+}
+
+    .ms-Dialog-actions > button {
+        margin-left: 20px;
+    }
+
+.ms-ContextualMenu-item a:hover {
+    text-decoration: none;
+}
+
+.ms-link-button {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 2;
+    box-sizing: border-box;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    vertical-align: top;
+    padding-top: 0px;
+    padding-right: 16px;
+    padding-bottom: 0px;
+    padding-left: 16px;
+    min-width: 163px;
+    height: 43px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(50, 49, 48);
+    user-select: none;
+    outline: transparent;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(138, 136, 134);
+    border-image: initial;
+    text-decoration: none;
+    border-radius: 2px;
+}
+
+    .ms-link-button:hover {
+        background-color: rgb(243, 242, 241);
+        color: rgb(32, 31, 30);
+        text-decoration: none;
+    }
+
+    .ms-link-button:active {
+        background-color: rgb(237, 235, 233);
+        color: rgb(32, 31, 30);
+    }
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.ms-Button {
+    min-width: 170px;
+    font-size: 20px;
+    height: auto;
+    text-align: center;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    line-height: 50px;
+}
+
+    .ms-Button .ms-Button-label {
+        font-size: 18px;
+    }
+
+    .ms-Button.ms-Button--small {
+        line-height: 30px;
+    }
+
+        .ms-Button.ms-Button--small .ms-Button-label {
+            font-size: 18px;
+        }
+
+.ms-Button--gray {
+    background-color: #707071;
+}
+
+    .ms-Button--gray:hover {
+        background-color: #605e5c;
+    }
+
+    .ms-Button--gray:active {
+        background-color: #707071;
+    }
+
+    .ms-Button--gray .ms-Button-label, .ms-Button--gray:hover .ms-Button-label {
+        color: white;
+    }
+
+a.ms-Button {
+    text-decoration: none;
+}
+
+.ms-Label, .ms-TextField .ms-Label {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.ms-Link {
+    font-size: 20px;
+}
+
+    .ms-Link:focus, .ms-Link:hover {
+        text-decoration: none;
+    }
+
+.ms-Table tbody td {
+    font-size: 15px;
+    line-height: 70px;
+}
+
+.ms-Table td, .ms-Table th {
+    border-bottom: 1px solid #E9EDF3;
+    color: #000;
+}
+
+.ms-Table-head, .ms-Table thead th {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 60px;
+    color: #000;
+}
+
+.ms-Table-row, .ms-Table tr {
+    font-size: 14px;
+}
+
+.ms-Toggle-field .ms-Label {
+    white-space: nowrap;
+    position: relative;
+    top: -5px;
+}
+
+.ms-Toggle-description {
+    font-size: 18px;
+}
+
+.wrapper-section {
+    display: flex;
+    flex-flow: column;
+    min-width: 807px;
+    min-height: 353px;
+    background: #FFFFFF;
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+    padding: 24px 59px 0;
+}
+
+    .wrapper-section h1 {
+        margin-bottom: 20px;
+    }
+
+    .wrapper-section p {
+        font-size: 24px;
+        margin-bottom: 36px;
+    }
+
+    .wrapper-section .content {
+        flex: 1;
+        padding-bottom: 80px;
+    }
+
+    .wrapper-section .bottom-action {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height: 91px;
+        background: rgba(233, 237, 243, 0.3);
+        margin: 0 -59px;
+    }
+
+        .wrapper-section .bottom-action .ms-Button {
+            margin-right: 15px;
+        }
+
+.ms-ContextualMenu.ms-ContextualMenu--hasChecks .ms-ContextualMenu-link, .ms-ContextualMenu.ms-ContextualMenu--hasIcons .ms-ContextualMenu-link {
+    padding: 0 16px 0 15px !important;
+}
+
+.user-management section {
+    display: none;
+}
+
+#ISVManagement section:nth-child(n+2) {
+    display: none;
+}
+
+.center {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.ms-ContextualHost {
+    left: auto !important;
+    right: 28px;
+}
+
+header {
+    display: flex;
+    height: 58px;
+    border-bottom: 1px solid #E9EDF3;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+    .logo span {
+        font-size: 18px;
+        font-weight: 600;
+        margin-left: 9px;
+    }
+
+        .logo span a {
+            color: #000;
+            text-decoration: none !important;
+        }
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65px;
+    min-height: 65px;
+    border-top: 1px solid #E9EDF3;
+    color: #477BA1;
+    font-size: 14px;
+}
+
+.login-section {
+    width: 620px;
+    height: 344px;
+    background: #FFFFFF;
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+}
+
+    .login-section header {
+        border: none;
+        height: auto;
+        padding: 25px;
+    }
+
+    .login-section p, .login-section a {
+        margin: 35px 0 0 65px;
+    }
+
+
+#seatBasedSection table {
+    min-height: 150px;
+}
+
+/* User Management page */
+#seatBasedSection p {
+    font-size: 20px;
+}
+
+#purchaseLicenseButton {
+    position: relative;
+    top: -6px;
+}
+
+#assignDialog .d-flex {
+    margin-top: 45px;
+}
+
+#assignDialog .ms-TextField input {
+    width: 535px;
+}
+
+#assignDialog .ms-TextField {
+    margin-right: 70px;
+}
+
+#assignDialog .ms-Dialog-content {
+    min-height: 340px;
+}
+
+#adminSelect {
+    position: relative;
+    top: 25px;
+}
+
+#assignedusers tr td:nth-child(4) {
+    text-align: right;
+    padding-right: 30px;
+}
+
+    #assignedusers tr td:nth-child(4) .ms-Link {
+        font-size: 15px;
+        visibility: collapse;
+    }
+
+#assignedusers tr:hover td {
+    background-color: rgba(196, 196, 196, 0.1);
+}
+
+    #assignedusers tr:hover td:nth-child(4) .ms-Link {
+        visibility: visible;
+    }
+
+/* ISV Management page */
+
+#orgSection table tbody tr:hover td {
+    cursor: pointer;
+    background-color: rgba(196, 196, 196, 0.1);
+}
+
+#orgDetailSection nav {
+    margin-top: -70px;
+    margin-bottom: 50px;
+}
+
+    #orgDetailSection nav .ms-Link {
+        font-size: 16px;
+    }
+
+#orgDetailSection p {
+    font-size: 20px;
+}
+
+    #orgDetailSection p span {
+        text-transform: capitalize;
+        font-weight: 500;
+    }
+
+.ms-Button .ms-Spinner {
+    display: none;
+    width: 30px;
+    vertical-align: middle;
+}
+
+.ms-Button .ms-Spinner-circle {
+    background-color: #333;
+}
+
+.ms-Button[disabled] .ms-Spinner {
+    display: inline-block;
+}
+
+.quantitylist ul, .quantitylist li {
+    padding: 0;
+    list-style: none;
+}
+
+.quantitylist label {
+    width: 220px;
+    display: inline-block;
+}
+
+.quantitylist span {
+    font-weight: bold;
+}
+
+.purchase{
+    margin-bottom:14px;
+}

@@ -1,0 +1,44 @@
+﻿@*
+Copyright (c) Microsoft Corporation.
+Licensed under the MIT License.
+*@
+
+@model AppSourceMockWebApp.Models.AppViewModel
+@using  AppSourceMockWebApp.Models
+
+<h3 class="mt-5 mb-5">@Model.AppOffer.Name</h3>
+
+<form method="post" action="/Home/App">
+    <input type="hidden" asp-for="@Model.AppOffer.OfferID" />
+    <input type="hidden" asp-for="@Model.AppOffer.Name" />
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Licence Type</label>
+        <select class="form-control" asp-for="@Model.Plan.PlanId" asp-items="@Model.PlanList"></select>
+    </div>
+    <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input type="number" min="1" max="50" class="form-control" id="quantity" placeholder="" data-quantity="@Model.Quantity" asp-for="@Model.Quantity">
+    </div>
+    <button type="submit" class="btn btn-primary">Purchase</button>
+</form>
+
+<script>
+    var quantityInputHtmlElement = document.querySelector("#quantity");
+    var licenceTypeHtmlElement = document.querySelector("select");
+
+    var licenseTypeChangedHandler = function () {
+        if (licenceTypeHtmlElement.selectedIndex === 1) {
+            quantityInputHtmlElement.disabled = true;
+            quantityInputHtmlElement.value = "";
+        }
+        else {
+            quantityInputHtmlElement.disabled = false;
+            quantityInputHtmlElement.value = quantityInputHtmlElement.attributes["data-quantity"].value || 5;
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        licenceTypeHtmlElement.addEventListener("change", () => licenseTypeChangedHandler());
+        licenseTypeChangedHandler();
+    });
+</script>
