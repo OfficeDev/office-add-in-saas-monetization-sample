@@ -13,7 +13,7 @@
 
 	**Note:** Here is an example of doing this with the **email** permission.
 
-	![AAD Consent Permissions](./images/app-source-aad-app-02.png)
+	![AAD Consent Permissions](./Images/app-source-aad-app-02.png)
 
 1. Repeat the process until all of the permissions in this list are added.
 	
@@ -23,13 +23,13 @@
 	- profile
 	- User.Read
 
-	![Permissions Added](./images/web-api-aad-app-01.png)
+	![Permissions Added](./Images/web-api-aad-app-01.png)
 1. Click **Grand admin consent for YOUR TENANT NAME**.
 1. Click **Yes**.
 
 	When you are finished, the screen will indicate all permissions have been granted.
 	
-	![Permissions Granted](./images/web-api-aad-app-02.png)
+	![Permissions Granted](./Images/web-api-aad-app-02.png)
 1. Click **Expose an API**.
 1. Next to **Application ID URI** click **Set**.
 1. Accept the default value and click **Save**.
@@ -42,7 +42,7 @@
 1. In the **User consent description** textbox enter `Accesses Contoso Monetization WebAPI as a user.`.
 1. Click **Add scope**.
 
-	![App ID URI](./images/web-api-aad-app-03.png)
+	![App ID URI](./Images/web-api-aad-app-03.png)
 1. Click **Add a client application**.
 1. In the **Client ID** textbox, enter the ClientID for the App Source AAD app you created.
 1. Check the **Authorized scopes** checkbox.
@@ -59,6 +59,6 @@
 1. Locate the **knownClientApplications** value in the manifest file.
 1. Enter the ClientID for the Web App AAD App you created.
 
-	![Code Path](./images/13.png)
+	![Code Path](./Images/13.png)
 
 1. Click **Save**.
