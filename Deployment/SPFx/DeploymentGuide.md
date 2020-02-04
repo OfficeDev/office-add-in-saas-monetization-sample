@@ -1,40 +1,42 @@
-#                    Monetization SPFX
+# Monetization SPFx Add-in
 
-1.  Download the latest SPFX [**saas-sample-web-part.sppkg**](saas-sample-web-part.sppkg) package file.
+# Installation
 
-2.   Open your SharePoint Catalog  https://cand3.sharepoint.com/sites/AppCatelog/AppCatalog/Forms/AllItems.aspx, upload SPFX package file to SharePoint Catalog.
+1.  Download the SPFx Add-in [**saas-sample-web-part.sppkg**](saas-sample-web-part.sppkg) package file.
+
+2.   Open your SharePoint Catalog then upload the SPFx package file.
 
    ![image-Catalog](Images/1.png)
 
-3. Select Checkbox and click Deploy button.
+3. Select the **checkbox** and click **Deploy**.
 
    ![image-Deploy](Images/2.png)
 
-4. Select **saas-sample-web-part** file, then select **Sync to Teams** menu.
+4. Select the **saas-sample-web-part** file, then click **Sync to Teams** in the Ribbon menu.
 
    ![image-Deploy](Images/12.png)
 
-5. Go to SharePoint Admin Center.
+5. Go to the SharePoint Admin Center.
 
-6. Open **API management** and approve the following two permission.
+6. Open the **API management** and approve the following two permissions.
 
    ![image-Permission](Images/3.png)
 
-7. Approve successfully.
+7. Successfully approved.
 
    ![image-Approve](Images/4.png)
 
-8. Open SharePoint site a page and edit this page.
+8. Open a SharePoint site page and edit the page.
 
-9. Add SaaSSampleWebPart into this page.
+9. Add the SaaSSampleWebPart to the page.
 
    ![image-UploadWebpart](Images/5.png)
 
-10. Edit this Webpart, click Configure button.
+10. Edit the web part, and click **Configure**.
 
    ![image-ConfigureWebpart](Images/6.png)
 
-11. Copy Contoso Monetization Code Sample Web API Client Id and paste it  
+11. Copy Contoso Monetization Code Sample Web API Client Id and paste it into the web part.
 
     ![image-ConfigureWebpart1](Images/7.png)
 
@@ -44,14 +46,14 @@
 
     ![image-ConfigureWebpart3](Images/9.png)
 
-13. Replace WebAPI URL using URAL was copied above, then past it SaaS Web API Text Field.
+13. Replace the WebAPI URL copied above, then paste it into the SaaS Web API Text Field.  The following example shows how to replace it.
 
     [**https://YOURContosoMonetizationCodeSampleWebAPIURL**/api/Subscriptions/CheckOrActivateLicense/contoso_o365_addin](https://YOURContosoMonetizationCodeSampleWebAPIURL/api/Subscriptions/CheckOrActivateLicense/contoso_o365_addin)
 
     ![image-ConfigureWebpart4](Images/10.png)
 
-14. Save configure and stop editing.
+14. Save the configuration and stop editing the page.
 
-15. Return to SharePoint page and check SPFX.
+15. Observe the license status in the web part.
 
     ![image-ConfigureWebpart5](Images/11.png)
