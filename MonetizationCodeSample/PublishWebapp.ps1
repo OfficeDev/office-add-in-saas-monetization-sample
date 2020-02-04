@@ -44,19 +44,19 @@ Compress-Archive ".\output\SaaSSampleWebApi\*" -DestinationPath ".\output\SaaSSa
 Write-Host "Packing SaaSSampleWebApp..." -ForegroundColor "Green"
 Compress-Archive ".\output\SaaSSampleWebApp\*" -DestinationPath ".\output\SaaSSampleWebApp.zip"
 
-# try {
-#     Write-Host "Publishing AppSourceMock..." -ForegroundColor "Green"
-#     Publish-AzWebApp -ResourceGroupName $ResourceGroupName -Name $resourceMockWebSiteName -ArchivePath "$currentPath\output\AppSourceMockWebApp.zip" -Confirm:$false -Force >> log.txt
-#     Write-Host "Publishing OutlookAddin..." -ForegroundColor "Green"
-#     Publish-AzWebApp -ResourceGroupName $ResourceGroupName -Name $outlookAddInWebSiteName -ArchivePath "$currentPath\output\OutlookWebAddInWeb.zip" -Confirm:$false -Force >> log.txt
-#     Write-Host "Publishing WebApi..." -ForegroundColor "Green"
-#     Publish-AzWebApp -ResourceGroupName $ResourceGroupName -Name $webApiSiteName -ArchivePath "$currentPath\output\SaaSSampleWebApi.zip" -Confirm:$false -Force >> log.txt
-#     Write-Host "Publishing WebApp..." -ForegroundColor "Green"
-#     Publish-AzWebApp -ResourceGroupName $ResourceGroupName -Name $webAppSiteName -ArchivePath "$currentPath\output\SaaSSampleWebApp.zip" -Confirm:$false -Force >> log.txt
-#     Write-Host "Completed!" -ForegroundColor "Green"
-# }
-# catch {
-#     Write-Host $_.Exception.Message
-#     Write-Host $_.Exception.ItemName
-# }
+try {
+     Write-Host "Publishing AppSourceMock..." -ForegroundColor "Green"
+     Publish-AzWebApp -ResourceGroupName $ResourceGroupName -Name $resourceMockWebSiteName -ArchivePath "$currentPath\output\AppSourceMockWebApp.zip" -Confirm:$false -Force >> log.txt
+     Write-Host "Publishing OutlookAddin..." -ForegroundColor "Green"
+     Publish-AzWebApp -ResourceGroupName $ResourceGroupName -Name $outlookAddInWebSiteName -ArchivePath "$currentPath\output\OutlookWebAddInWeb.zip" -Confirm:$false -Force >> log.txt
+     Write-Host "Publishing WebApi..." -ForegroundColor "Green"
+     Publish-AzWebApp -ResourceGroupName $ResourceGroupName -Name $webApiSiteName -ArchivePath "$currentPath\output\SaaSSampleWebApi.zip" -Confirm:$false -Force >> log.txt
+     Write-Host "Publishing WebApp..." -ForegroundColor "Green"
+     Publish-AzWebApp -ResourceGroupName $ResourceGroupName -Name $webAppSiteName -ArchivePath "$currentPath\output\SaaSSampleWebApp.zip" -Confirm:$false -Force >> log.txt
+     Write-Host "Completed!" -ForegroundColor "Green"
+}
+catch {
+     Write-Host $_.Exception.Message
+     Write-Host $_.Exception.ItemName
+}
 
