@@ -47,16 +47,28 @@ When you are finished, the screen will indicate all permissions have been grante
 1. Open the `ARMParameters.json` file and update the following values using the corresponding values from the AAD applications you created in steps 1-4 above. These values can be found on the Overview page for each AAD application in the Azure Portal.
 
    ![Code Path](Images/6.png)
+   
+2. Update the following parameters with values you choose.
+   - webAppSiteName
+   - webApiSiteName
+   - outlookAddInWebSiteName
+   - resourceMockWebSiteName
+   - domainName
+   - directoryId
+   - sqlAdministratorLogin
+   - sqlAdministratorLoginPassword
+   - sqlMockDatabaseName
+   - sqlSampleDatabaseName
 
-2. Run the Powershell command `Connect-AzAccount`.
+3. Run the Powershell command `Connect-AzAccount`.
 
    ![Code Path](Images/7.png)
 
-3. Run the script `.\DeployTemplate.ps1`. When prompted, enter the name of the resource group to create.
+5. Run the script `.\DeployTemplate.ps1`. When prompted, enter the name of the resource group to create.
 
    ![Code Path](Images/8.png)
 
-4. Deploy ARM Template successfully.
+5. Deploy ARM Template successfully.
 
    ![Code Path](Images/9.png)   
 
@@ -72,8 +84,6 @@ When you are finished, the screen will indicate all permissions have been grante
    
    ![Code Path](Images/10.png)
 
-   
-
 ## Update AAD Application
 
 1. Change back to the **.\Deployment** directory.
@@ -84,7 +94,10 @@ When you are finished, the screen will indicate all permissions have been grante
 
 1. Now we have completed all deployment.
 
+## Install Sample Add-ins
 
+1. [SPFx Add-in](./SPFx/DeploymentGuide.md)
+1. [Outlook Add-in](./AddIn/DeploymentGuide.md)
 
 ## Clean up
 
