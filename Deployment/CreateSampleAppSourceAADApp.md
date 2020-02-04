@@ -20,7 +20,7 @@
 
 	**Note:** Here is an example of doing this with the **email** permission.
 
-	![AAD Consent Permissions](./images/app-source-aad-app-02.png)
+	![AAD Consent Permissions](./Images/app-source-aad-app-02.png)
 
 1. Repeat the process until all of the permissions in this list are added.
 	
@@ -28,11 +28,11 @@
 	openid
 	profile	
 
-	![Permissions Added](./images/app-source-aad-app-03.png)
+	![Permissions Added](./Images/app-source-aad-app-03.png)
 
 1. Click **Grand admin consent for YOUR TENANT NAME**.
 1. Click **Yes**.
 
 When you are finished, the screen will indicate all permissions have been granted.
 
-![Permissions Granted](./images/app-source-aad-app-04.png)
+![Permissions Granted](./Images/app-source-aad-app-04.png)

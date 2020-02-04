@@ -4,7 +4,7 @@ This code sample demonstrates how Microsoft ISVs can create a simple license man
 # Installation and Configuration
 Follow the instructions in the deployment guides to install and configure the sample.
 
-1. [Sample Deployment Guide](/Deployment/DeploymentGuide.md)
+1. [Sample Deployment Guide](/Deployment/DeploymentGuide.MD)
 2. [SPFx add-in Deployment Guide](/Deployment/SPFx/DeploymentGuide.md)
 3. [Outlook add-in Deployment Guide](/Deployment/AddIn/DeploymentGuide.md)
 

@@ -13,7 +13,7 @@
 
 	**Note:** Here is an example of doing this with the **email** permission.
 
-	![AAD Consent Permissions](./images/outlook-add-in-aad-app-01.png)
+	![AAD Consent Permissions](./Images/outlook-add-in-aad-app-01.png)
 1. Repeat the process until all of the permissions in this list are added.
 	- Files.Read.All
 	- offline_access
@@ -27,4 +27,4 @@
 1. Check the **checkbox** next to **user_impersonation**.
 1. Click **Add permissions**. 
 
-	![Permissions Added](./images/outlook-add-in-aad-app-02.png)
+	![Permissions Added](./Images/outlook-add-in-aad-app-02.png)
