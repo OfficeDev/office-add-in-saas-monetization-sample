@@ -22,7 +22,7 @@ This section links to the various README files associated with the projects incl
 - [OutlookWebAddIn](/MonetizationCodeSample/OutlookWebAddIn/README.MD)
 - [OutlookWebAddInWeb](/MonetizationCodeSample/OutlookWebAddInWeb/README.MD)
 - [SaaSSampleWebApi](/MonetizationCodeSample/SaaSSampleWebApi/README.MD)
-- [SaaSSampleWebApp](/MonetizationCodeSample/AppSourceMockWebApp/README.MD)
+- [SaaSSampleWebApp](/MonetizationCodeSample/SaaSSampleWebApp/README.MD)
 - [SPFXAddIn](/MonetizationCodeSample/SPFXAddIn/README.md)
 
 # Appendix
