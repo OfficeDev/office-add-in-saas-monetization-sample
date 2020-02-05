@@ -16,13 +16,13 @@ Follow the instructions in the test guide to test the different use cases.
 # Inventory
 This section links to the various README files associated with the projects included in the sample.  Read the README files for more information about each project.
 
-- [AppSourceMockWebApp](/MonetizationCodeSample/AppSourceMockWebApp/README.md)
+- [AppSourceMockWebApp](/MonetizationCodeSample/AppSourceMockWebApp/README.MD)
 - [Microsoft.Identity.Web](/MonetizationCodeSample/Microsoft.Identity.Web/README.md)
-- [MockAppData](/MonetizationCodeSample/MockAppData/README.md)
-- [OutlookWebAddIn](/MonetizationCodeSample/OutlookWebAddIn/README.md)
-- [OutlookWebAddInWeb](/MonetizationCodeSample/OutlookWebAddInWeb/README.md)
-- [SaaSSampleWebApi](/MonetizationCodeSample/SaaSSampleWebApi/README.md)
-- [SaaSSampleWebApp](/MonetizationCodeSample/AppSourceMockWebApp/README.md)
+- [MockAppData](/MonetizationCodeSample/MockAppData/README.MD)
+- [OutlookWebAddIn](/MonetizationCodeSample/OutlookWebAddIn/README.MD)
+- [OutlookWebAddInWeb](/MonetizationCodeSample/OutlookWebAddInWeb/README.MD)
+- [SaaSSampleWebApi](/MonetizationCodeSample/SaaSSampleWebApi/README.MD)
+- [SaaSSampleWebApp](/MonetizationCodeSample/AppSourceMockWebApp/README.MD)
 - [SPFXAddIn](/MonetizationCodeSample/SPFXAddIn/README.md)
 
 # Appendix
