@@ -20,7 +20,7 @@ This section links to the various README files associated with the projects incl
 - [Microsoft.Identity.Web](/MonetizationCodeSample/Microsoft.Identity.Web/README.md)
 - [MockAppData](/MonetizationCodeSample/MockAppData/README.MD)
 - [OutlookWebAddIn](/MonetizationCodeSample/OutlookWebAddIn/README.MD)
-- [OutlookWebAddInWeb](/MonetizationCodeSample/OutlookWebAddInWeb/README.MD)
+- [OutlookWebAddInWeb](/MonetizationCodeSample/OutlookWebAddIn/README.MD)
 - [SaaSSampleWebApi](/MonetizationCodeSample/SaaSSampleWebApi/README.MD)
 - [SaaSSampleWebApp](/MonetizationCodeSample/AppSourceMockWebApp/README.MD)
 - [SPFXAddIn](/MonetizationCodeSample/SPFXAddIn/README.md)
