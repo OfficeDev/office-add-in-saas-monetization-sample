@@ -15,7 +15,11 @@
       {
         "resource": "Microsoft Graph",
         "scope": "User.Read"
-      }
+      },
+        {
+          "resource": "Windows Azure Active Directory",
+          "scope": "User.Read"
+        }
     ]
   },
   "paths": {

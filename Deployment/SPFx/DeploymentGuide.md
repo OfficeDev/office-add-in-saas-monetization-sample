@@ -2,58 +2,80 @@
 
 # Installation
 
-1.  Download the SPFx Add-in [**saas-sample-web-part.sppkg**](saas-sample-web-part.sppkg) package file.
+1. In the Azure Portal, copy the Contoso Monetization Code Sample Web API Application **Display Name** and **Application ID** and paste it into a text file. You will need them in subsequent steps.
 
-2.   Open your SharePoint Catalog then upload the SPFx package file.
+   ![image-Deploy](Images/13.png)
+
+2. Copy the Contoso Monetization Code Sample Web API **URL**  and paste it into a text file. You will need it in subsequent steps.
+
+   ![image-ConfigureWebpart3](Images/9.png)
+
+3. Download the [SPFx source code](../../MonetizationCodeSample/SPFXAddIn), and open it using Visual Studio Code.
+
+   ![image-Deploy](Images/14.png)
+
+4. Open the **package-solution.json** file in the config folder, then paste the Contoso Monetization Code Sample Web API Display Name that you copied in step 1 into the resource value on line 12. **Save** the file.
+
+   ![image-Deploy](Images/15.png)
+
+5. Open the **SaaSSampleWebPartWebPart.manifest.json** file 
+
+   ![image-Deploy](Images/16.png)
+
+6. Paste the Contoso Monetization Code Sample Web API **Application ID** that you copied in step 1 into the **clientId** value on line 25.
+
+   ![image-Deploy](Images/17.png)
+
+7. Paste Contoso Monetization Code Sample Web API **URL** that you copied in step 2 into the **sassWebApi** value on line 25.
+
+	>**Note:** You are only replacing a portion of the URL.  Refer to the picture below to see which portion of the URL to replace.**
+	
+ 	**Save** the file.
+
+   ![image-Deploy](Images/18.png)
+
+8. Execute the following commands in the terminal to build, bundle, and package the SPFx Add-in.
+
+   ```
+   npm install
+   
+   gulp build
+   
+   gulp bundle --ship
+   
+   gulp package-solution --ship
+   ```
+
+9. Open the folder the packaged file was generated in and located the **saas-sample-web-part.sppkg** file.  Note the file path to the package file, you will need it in the next step.
+
+   ![image-Deploy](Images/19.png)
+
+10. Open your SharePoint App Catalog and upload the SPFx package file.
 
    ![image-Catalog](Images/1.png)
 
-3. Select the **checkbox** and click **Deploy**.
+11. Select the **checkbox** and click **Deploy**.
 
-   ![image-Deploy](Images/2.png)
+    ![image-Deploy](Images/2.png)
 
-4. Select the **saas-sample-web-part** file, then click **Sync to Teams** in the Ribbon menu.
+12. Select the **saas-sample-web-part-client-side-solution** Add-in, then in the Ribbon, click **Sync to Teams**.
 
-   ![image-Deploy](Images/12.png)
+    ![image-Deploy](Images/12.png)
 
-5. Go to the SharePoint Admin Center.
+13. Go to the SharePoint Admin Center.
 
-6. Open the **API management** and approve the following two permissions.
+14. Open **API management** and approve the following two permissions.
 
-   ![image-Permission](Images/3.png)
+    ![image-Permission](Images/3.png)
 
-7. Successfully approved.
+15. Approve successfully.
 
-   ![image-Approve](Images/4.png)
+    ![image-Approve](Images/4.png)
 
-8. Open a SharePoint site page and edit the page.
-
-9. Add the SaaSSampleWebPart to the page.
+16. Go to a SharePoint site and edit a page. Add the SaaSSampleWebPart to the page.
 
    ![image-UploadWebpart](Images/5.png)
 
-10. Edit the web part, and click **Configure**.
-
-   ![image-ConfigureWebpart](Images/6.png)
-
-11. Copy Contoso Monetization Code Sample Web API Client Id and paste it into the web part.
-
-    ![image-ConfigureWebpart1](Images/7.png)
-
-    ![image-ConfigureWebpart2](Images/8.png)
-
-12. Copy Contoso Monetization Code Sample Web API URL
-
-    ![image-ConfigureWebpart3](Images/9.png)
-
-13. Replace the WebAPI URL copied above, then paste it into the SaaS Web API Text Field.  The following example shows how to replace it.
-
-    [**https://YOURContosoMonetizationCodeSampleWebAPIURL**/api/Subscriptions/CheckOrActivateLicense/contoso_o365_addin](https://YOURContosoMonetizationCodeSampleWebAPIURL/api/Subscriptions/CheckOrActivateLicense/contoso_o365_addin)
-
-    ![image-ConfigureWebpart4](Images/10.png)
-
-14. Save the configuration and stop editing the page.
-
-15. Observe the license status in the web part.
+15. Save the page and observe the license status in the web part and developer console.
 
     ![image-ConfigureWebpart5](Images/11.png)

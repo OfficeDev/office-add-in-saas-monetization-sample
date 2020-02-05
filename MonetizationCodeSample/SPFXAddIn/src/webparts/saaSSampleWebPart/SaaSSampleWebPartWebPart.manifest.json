@@ -22,8 +22,8 @@
     "officeFabricIconFontName": "Page",
     "properties": {
       "description": "SaaSSampleWebPart",
-      "clientId":"326dc9b3-7353-4b1e-a827-2a346d0bb132",
-      "sassWebApi":"https://contosomonetizationwebapi.azurewebsites.net/api/Subscriptions/CheckOrActivateLicense/contoso_o365_addin"
+      "clientId":"8c1d0104-48e8-4fa4-9911-d6362b1d98a0",
+      "sassWebApi":"https://contosomonetizationwebapitest.azurewebsites.net/api/Subscriptions/CheckOrActivateLicense/contoso_o365_addin"
     }
   }]
 }
