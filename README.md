@@ -1,5 +1,21 @@
+---
+page_type: sample
+products:
+- office-outlook
+- office-365
+- office-sp
+languages:
+- javascript
+extensions:
+  contentType: samples
+  technologies:
+  - Add-ins
+  createdDate: 2/14/2020 12:00:00 PM
+description: "Learn how to create a simple license management system to manage add-ins sold in Microsoft AppSource"
+---
+
 # Introduction 
-This code sample demonstrates how Microsoft ISVs can create a simple license management system to manage add-ins sold in Microsoft AppSource.
+This code sample demonstrates how Microsoft ISVs can create a simple license management system to manage add-ins sold in Microsoft AppSource. This code sample package includes a Microsoft AppSource mock web app, a SaaS sample, a SharePoint add-in, an Outlook add-in, and a licensing management tool. 
 
 # Installation and Configuration
 Follow the instructions in the deployment guides to install and configure the sample.
