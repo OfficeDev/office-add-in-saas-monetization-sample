@@ -50,7 +50,7 @@ This diagram describes how the SaaS fulfillment APIs are invoked.
    ![](images/console_debug_log.png)
 
 7. Close the **Office Outlook add-in**, and switch back to your browser.
-8. Repeat steps 6 and 7 for the **SPFx web part**.
+8. Repeat steps 6 and 7 for  **other Office add-ins and SPFx web part**.
 
 ## Service initiated update (Customer goes to AppSource and converts their Site Based License to a Seat Based License)
 
@@ -76,7 +76,7 @@ This diagram describes how the SaaS fulfillment APIs are invoked.
 
    ![](images/console_debug_log_no_license_1.png)
 
-   Open the **SPFx web part** to see the same behavior.
+   Open the **Other Office add-ins and SPFx web part** to see the same behavior.
 
 6. Switch to your web browser, and go to home page of the ISV service web site.  Then click the **Purchase/Cancel license** button.
 
@@ -98,7 +98,7 @@ This diagram describes how the SaaS fulfillment APIs are invoked.
 
    ![](images/console_debug_log_2.png)
 
-   Open the **SPFx web part** to see the same behavior.
+   Open the **other Office add-ins and SPFx web part** to see the same behavior.
 
 9. Do not close the page, we will continue to test in the next section.
 
@@ -133,9 +133,11 @@ At this point you will switch to use the other user accounts mentioned in the pr
 5. Please use a new organization account B to open **Office Outlook add-in** and sign in with the organization account. 
 
    Open the developer tools in your web browser to see the debug logs.
-
-  ![](images/console_debug_log_4.png)
-
->**Note:** You can access the ISV Management Dashboard by clicking the current user's name to open the dropdown menu.
+   
+   Open the **other Office add-ins and SPFx web part** to see the same behavior.
+   
+   ![](images/console_debug_log_4.png)
+   
+   **Note:** You can access the ISV Management Dashboard by clicking the current user's name to open the dropdown menu.
 
   ![](images/isv-dashboard.png)

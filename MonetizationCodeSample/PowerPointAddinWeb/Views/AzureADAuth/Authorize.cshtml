@@ -1,0 +1,24 @@
+﻿@*
+Copyright (c) Microsoft Corporation.
+Licensed under the MIT License.
+*@
+
+@{
+    ViewData["Title"] = "Authorize";
+    Layout = "~/Views/Shared/_addinLayout.cshtml";
+}
+
+@section scripts {
+
+    <script>
+        Office.initialize = function (reason) {
+            $(document).ready(function () {
+             console.log("Office.context.ui.messageParent" + '@Html.Raw(ViewBag.Message)')
+             Office.context.ui.messageParent('@Html.Raw(ViewBag.Message)');
+            });
+         }
+    </script>
+
+}
+
+

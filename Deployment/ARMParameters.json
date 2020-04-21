@@ -1,63 +1,90 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-      "webAppSiteName": {
-        "value": "contosomonetizationwebapp"
-      },
-      "webApiSiteName": {
-        "value": "contosomonetizationwebapi"
-      },
-      "outlookAddInWebSiteName": {
-        "value": "contosomonetizationoutlookaddin"
-      },
-      "resourceMockWebSiteName": {
-        "value": "contosomonetizationappsource"
-      },
-      "domainName": {
-        "value": "<AzureAD domain name>"
-      },
-      "directoryId": {
-        "value": "<directoryId>"
-      },
-      "sqlAdministratorLogin": {
-        "value": "<db username>"
-      },
-      "sqlAdministratorLoginPassword": {
-        "value": "<db password>"
-      },
-      "sqlMockDatabaseName": {
-        "value": "AppSourceMockWebAppDB"
-      },
-      "sqlSampleDatabaseName": {
-        "value": "MonetizationSampleDB"
-      },
-      "webAppClientId": {
-        "value": "<webAppClientId>"
-      },
-      "webAppClientSecret": {
-        "value": "<webAppClientSecret>"
-      },
-      "webApiClientId": {
-        "value": "<webApiClientId>"
-      },
-      "webApiClientSecret": {
-        "value": "<webApiClientSecret>"
-      },
-      "webApiIdentifierUri": {
-        "value": "api://xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-      },
-      "outlookAddinClientId": {
-        "value": "<outlookAddinClientId>"
-      },
-      "outlookAddinClientSecret": {
-        "value": "<outlookAddinClientSecret>"
-      },
-      "sourceMockClientId": {
-        "value": "<sourceMockClientId>"
-      },
-      "tenantId": {
-        "value": "organizations"
-      }
+  "parameters": {
+    "webAppSiteName": {
+      "value": "contosomonetizationwebapptest"
+    },
+    "webApiSiteName": {
+      "value": "contosomonetizationwebapitest"
+    },
+    "outlookAddInWebSiteName": {
+      "value": "contosomonetizationoutlookaddintest"
+    },
+    "wordAddInWebSiteName": {
+      "value": "contosomonetizationwordaddintest"
+    },
+    "excelAddInWebSiteName": {
+      "value": "contosomonetizationexceladdintest"
+    },
+    "powerpointAddInWebSiteName": {
+      "value": "contosomonetizationpowerpointaddintest"
+    },
+    "resourceMockWebSiteName": {
+      "value": "contosomonetizationappsourcetest"
+    },
+    "domainName": {
+      "value": "cand3.onmicrosoft.com"
+    },
+    "directoryId": {
+      "value": "0534985e-032e-430a-9b95-60f5277b96f4"
+    },
+    "sqlAdministratorLogin": {
+      "value": "Monetizationadmin"
+    },
+    "sqlAdministratorLoginPassword": {
+      "value": "Beat@Monetization20"
+    },
+    "sqlMockDatabaseName": {
+      "value": "AppSourceMockWebAppDB"
+    },
+    "sqlSampleDatabaseName": {
+      "value": "MonetizationSampleDB"
+    },
+    "webAppClientId": {
+      "value": "b10a1890-282c-45a1-b37d-c0aa31097add"
+    },
+    "webAppClientSecret": {
+      "value": "c85QlqIta=n1@4YRZsI/FzFY@r67D-Qj"
+    },
+    "webApiClientId": {
+      "value": "56672c27-a0f4-4f48-992d-441d57833cb0"
+    },
+    "webApiClientSecret": {
+      "value": "k4/H1Ng4Hd?dFDP0?K:P]89AH?v]Wo=m"
+    },
+    "webApiIdentifierUri": {
+      "value": "api://56672c27-a0f4-4f48-992d-441d57833cb0"
+    },
+    "outlookAddInClientId": {
+      "value": "09cc63ed-879a-425c-9ebb-28d612b8a4bc"
+    },
+    "outlookAddInClientSecret": {
+      "value": "/ndWMhQywFd5LbxZ]-MJUt/CfAkH0h46"
+    },
+    "wordAddInClientId": {
+      "value": "0f2dc1da-d4d9-4ae0-8d8c-155adaf0acd7"
+    },
+    "wordAddInClientSecret": {
+      "value": "-A0o04Wu.i7rmZQP[m:TNbmlSSZ/@FE-"
+    },
+    "excelAddInClientId": {
+      "value": "7360fcd1-49a3-41a8-8ab4-a1b97187f88e"
+    },
+    "excelAddInClientSecret": {
+      "value": "cUamCYAeit@b_]2mpDzBhVDz2.ep7mg7"
+    },
+    "powerpointAddInClientId": {
+      "value": "7710a53d-b355-4d5a-90f8-a659d10d87c0"
+    },
+    "powerpointAddInClientSecret": {
+      "value": "uQI6UIR_uP-BT-.wGkSrUiWM40yQh5U?"
+    },
+    "sourceMockClientId": {
+      "value": "a484cee8-dec5-4409-a831-2b186821f5d5"
+    },
+    "tenantId": {
+      "value": "organizations"
     }
+  }
   }

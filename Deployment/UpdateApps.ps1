@@ -3,37 +3,47 @@
 
 param(
     [Parameter(Mandatory)]
-    [String]$armConfig = (Read-Host -Prompt "Enter the ARMParameters.json file"),
-    [Parameter(Mandatory)]
-    [String]$newAppsConfig = (Read-Host -Prompt "Enter the NewApps.json file")
+    [String]$armConfig = (Read-Host -Prompt "Enter the ARMParameters.json file")
 )
 
 $armConfigJson = Get-Content -Path $armConfig |Out-String|ConvertFrom-Json
-$newAppsConfigJson = Get-Content -Path $newAppsConfig |Out-String|ConvertFrom-Json
 
-$webApp = $newAppsConfigJson.apps|Where-Object {$_.appName -eq "webApp"}
-$webAppDisplayName = $webApp.bodyParameter.displayName
-Write-Host "Updating $webAppDisplayName redirectUris..." -ForegroundColor Green
-
-$webApp = Get-MgApplication -top 400|Where-Object {$_.DisplayName -eq $webAppDisplayName}
+$webApp = Get-MgApplication -top 400|Where-Object {$_.AppId -eq $armConfigJson.parameters.webAppClientId.value}
 $webAppSiteName = $armConfigJson.parameters.webAppSiteName.value
+Write-Host "Updating $webAppSiteName redirectUris..." -ForegroundColor Green
 $redirectUris = "https://$webAppSiteName.azurewebsites.net/signin-oidc","https://$webAppSiteName.azurewebsites.net/" 
 Update-MgApplication -ApplicationId $webApp.Id -WebRedirectUris $redirectUris
 
-$appResource = $newAppsConfigJson.apps|Where-Object {$_.appName -eq "appResource"}
-$appResourceNameDisplayName = $appResource.bodyParameter.displayName
-Write-Host "Updating $appResourceNameDisplayName redirectUris..." -ForegroundColor Green
-$appResource = Get-MgApplication -top 400|Where-Object {$_.DisplayName -eq $appResourceNameDisplayName}
+$appResource = Get-MgApplication -top 400|Where-Object {$_.AppId -eq $armConfigJson.parameters.sourceMockClientId.value}
 $resourceMockWebSiteName = $armConfigJson.parameters.resourceMockWebSiteName.value
+Write-Host "Updating $resourceMockWebSiteName redirectUris..." -ForegroundColor Green
 $redirectUris = "https://$resourceMockWebSiteName.azurewebsites.net/signin-oidc","https://$resourceMockWebSiteName.azurewebsites.net/" 
 Update-MgApplication -ApplicationId $appResource.Id -WebRedirectUris $redirectUris
 
-$outlookAddin = $newAppsConfigJson.apps|Where-Object {$_.appName -eq "outlookAddin"}
-$outlookAddinDisplayName = $outlookAddin.bodyParameter.displayName
-Write-Host "Updating $outlookAddinDisplayName redirectUris..." -ForegroundColor Green
-$outlookAddin = Get-MgApplication -top 400|Where-Object {$_.DisplayName -eq $outlookAddinDisplayName}
+
+$outlookAddIn = Get-MgApplication -top 400|Where-Object {$_.AppId -eq $armConfigJson.parameters.outlookAddInClientId.value}
 $outlookAddInWebSiteName = $armConfigJson.parameters.outlookAddInWebSiteName.value
+Write-Host "Updating $outlookAddInWebSiteName redirectUris..." -ForegroundColor Green
 $redirectUris = "https://$outlookAddInWebSiteName.azurewebsites.net/AzureADAuth/Authorize"
-Update-MgApplication -ApplicationId $outlookAddin.Id -WebRedirectUris $redirectUris
+Update-MgApplication -ApplicationId $outlookAddIn.Id -WebRedirectUris $redirectUris
+
+$wordAddIn = Get-MgApplication -top 400|Where-Object {$_.AppId -eq $armConfigJson.parameters.wordAddInClientId.value}
+$wordAddInWebSiteName = $armConfigJson.parameters.wordAddInWebSiteName.value
+Write-Host "Updating $wordAddInWebSiteName redirectUris..." -ForegroundColor Green
+$redirectUris = "https://$wordAddInWebSiteName.azurewebsites.net/AzureADAuth/Authorize"
+Update-MgApplication -ApplicationId $wordAddIn.Id -WebRedirectUris $redirectUris
+
+$excelAddIn = Get-MgApplication -top 400|Where-Object {$_.AppId -eq $armConfigJson.parameters.excelAddInClientId.value}
+$excelAddInWebSiteName = $armConfigJson.parameters.excelAddInWebSiteName.value
+Write-Host "Updating $excelAddInWebSiteName redirectUris..." -ForegroundColor Green
+$redirectUris = "https://$excelAddInWebSiteName.azurewebsites.net/AzureADAuth/Authorize"
+Update-MgApplication -ApplicationId $excelAddIn.Id -WebRedirectUris $redirectUris
+
+$powerpointAddIn = Get-MgApplication -top 400|Where-Object {$_.AppId -eq $armConfigJson.parameters.powerpointAddInClientId.value}
+$powerpointAddInWebSiteName = $armConfigJson.parameters.powerpointAddInWebSiteName.value
+Write-Host "Updating $powerpointAddInWebSiteName redirectUris..." -ForegroundColor Green
+$redirectUris = "https://$powerpointAddInWebSiteName.azurewebsites.net/AzureADAuth/Authorize"
+Update-MgApplication -ApplicationId $powerpointAddIn.Id -WebRedirectUris $redirectUris
+
 Write-Host "Completed!" -ForegroundColor Green
 

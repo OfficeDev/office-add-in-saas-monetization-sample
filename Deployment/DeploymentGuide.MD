@@ -2,49 +2,41 @@
 
 ## Prerequisites
 
-- Install the following PowerShell modules
-   - [PowerShell 6](https://github.com/PowerShell/PowerShell/releases/tag/v6.2.3)
-   - [Microsoft Graph PowerShell SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell)
+- Install the following PowerShell modules:
+   - [PowerShell 7]( https://github.com/PowerShell/PowerShell/releases/tag/v7.0.0 )
    - [Azure](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-3.1.0)
+   - [Microsoft Graph PowerShell SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell)
    - Install [.NET Core 3.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) and a text editor like Visual Studio or [Visual Studio Code](https://code.visualstudio.com)
-- Azure Subscription and an Admin account
+- Azure subscription and an admin account
 
-## Create the AAD Applications
+## Create the Azure AD applications
 
-This sample uses 4 Azure Active Directory Applications.  Refer to the four documents below to create them.
+This sample uses four Azure Active Directory applications. For instructions for creating the applications, see:
 
-1. [Create Sample App Source AAD App](CreateSampleAppSourceAADApp.md)
-1. [Create Sample Web App AAD App](CreateSampleWebAppAADApp.md)
-1. [Create Sample Outlook Add-in AAD App](CreateSampleOutlookAddInAADApp.md)
-1. [Create Sample Web API AAD App](CreateSampleWebAPIAADApp.md) - The other AAD Apps must be created before this one may be created and configured. 
+- [Create sample app source Azure AD app](CreateSampleAppSourceAADApp.md)
+- [Create sample web app Azure AD app](CreateSampleWebAppAADApp.md)
+- Add-ins Azure AD apps:
+   - [Create sample Outlook add-in Azure AD app](CreateSampleOutlookAddInAADApp.md) 
+   - [Create sample word add-in Azure AD app](CreateSampleWordAddInAADApp.md) 
+   - [Create sample Excel add-in Azure AD app](CreateSampleExcelAddInAADApp.md) 
+   - [Create sample PowerPoint add-in Azure AD app](CreateSamplePowerPointAddInAADApp.md) 
+- [Create sample web API Azure AD app](CreateSampleWebAPIAADApp.md) - Create and configure this one after you create the other Azure AD apps. 
 
-## Grant consent for the Sample Web App AAD Application
+## Grant consent for the sample web app Azure AD application
 
 1. Click **Azure Active Directory**.
 1. Click **App registrations**.
-1. Click the Sample Web App AAD Application you created. 
+1. Click the sample web app Azure AD application you created. 
 1. Click **Grand admin consent for YOUR TENANT NAME**.
 1. Click **Yes**.
 
-When you are finished, the screen will indicate all permissions have been granted.
+When you're finished, the screen will indicate that all permissions have been granted.
 
 ![Permissions Granted](./Images/web-app-aad-app-01.png)
 
-## Grant consent for the Sample Outlook Add-in AAD Application
+## Deploy the ARM template with PowerShell
 
-1. Click **Azure Active Directory**.
-1. Click **App registrations**.
-1. Click the Sample Outlook Add-in AAD Application you created. 
-1. Click **Grand admin consent for YOUR TENANT NAME**.
-1. Click **Yes**.
-
-When you are finished, the screen will indicate all permissions have been granted.
-
-![Permissions Granted](./Images/outlook-add-in-aad-app-03.png)
-
-## Deploy the ARM Template with PowerShell
-
-1. Open the `ARMParameters.json` file and update the following values using the corresponding values from the AAD applications you created in steps 1-4 above. These values can be found on the Overview page for each AAD application in the Azure Portal.
+1. Open the `ARMParameters.json` file and update the following values using the corresponding values from the Azure AD applications you created. These values can be found on the Overview page for each Azure AD application in the Azure portal.
 
    ![Code Path](Images/6.png)
    
@@ -52,15 +44,18 @@ When you are finished, the screen will indicate all permissions have been grante
    - webAppSiteName
    - webApiSiteName
    - outlookAddInWebSiteName
+   - wordAddInWebSiteName
+   - excelAddInWebSiteName
+   - powerpointAddInWebSiteName
    - resourceMockWebSiteName
    - domainName
    - directoryId
    - sqlAdministratorLogin
-   - sqlAdministratorLoginPassword
+- sqlAdministratorLoginPassword
    - sqlMockDatabaseName
    - sqlSampleDatabaseName
-
-3. Run the Powershell command `Connect-AzAccount`.
+   
+3. Open PowerShell 7 and run the Powershell command `Connect-AzAccount`.
 
    ![Code Path](Images/7.png)
 
@@ -76,36 +71,42 @@ When you are finished, the screen will indicate all permissions have been grante
 
 1. In the command line, change to the **.\MonetizationCodeSample** directory.
 
-1. Run the script `.\PublishWebapp.ps1`. 
+1. Run the script `.\PublishWebapp.ps1 -armConfig ..\Deployment\ARMParameters.json`. 
    
-1. When prompted, enter the same resource group name and webAppSiteName,webApiSiteName,outlookAddInWebSiteName,resourceMockWebSiteName you entered in `ARMParameters.json` in previous steps.
+1. When prompted, enter the same resource group name.
    
 1. Deploy code successfully.
    
    ![Code Path](Images/10.png)
 
-## Update AAD Application
+## Update Azure AD applications
 
-1. Change back to the **.\Deployment** directory.
+1. In the command line, change to the **.\Deployment** directory.
 
-1. Run the script `.\UpdateApps.ps1 -armConfig .\ARMParameters.json -newAppsConfig .\NewApps.json ` 
+1. Run the script `Connect-Graph `
+
+   ![Code Path](Images/3.png)
+
+1. Run the script `.\UpdateApps.ps1 -armConfig .\ARMParameters.json ` 
 
    ![Code Path](Images/11.png)
 
-1. Now we have completed all deployment.
+You now have completed the deployment.
 
-## Install Sample Add-ins
+## Install sample add-ins
 
-1. [SPFx Add-in](./SPFx/DeploymentGuide.md)
-1. [Outlook Add-in](./AddIn/DeploymentGuide.md)
+- [SPFx add-in](./SPFx/DeploymentGuide.md)
+- Office add-ins:
+   -  [Outlook add-in](./AddIn/OutlookAddInDeploymentGuide.md)
+   -  [Word add-in](./AddIn/WordAddInDeploymentGuide.md)
+   -  [Excel add-in](./AddIn/ExcelAddInDeploymentGuide.md)
+   -  [PowerPoint add-in](./AddIn/PowerPointAddInDeploymentGuide.md)
 
 ## Clean up
 
-If you want to remove all applications and sites, you can execute the following steps.
+If you want to remove all Azure AD applications and sites, you can do the following:
 
-1. Change back to the **.\Deployment** directory.
-2. Run the Powershell command `Remove-AzResourceGroup -name <resource group name>` and pay attention to replacing **&lt;resource group name&gt;** with your resource group name
-
-3. Change to the **.\Deployment** directory.
-   -Run the script `.\RemoveApps.ps1 -config .\NewApps.json`
-
+1. Open PowerShell 7 and go to the **.\Deployment** directory.
+2. Run the Powershell command `Remove-AzResourceGroup -name <resource group name>` and pay attention to replacing **&lt;resource group name&gt;** with your resource group name.
+3. Go to the **.\Deployment** directory.
+4. Run the script `.\RemoveApps.ps1 -config .\NewApps.json`.

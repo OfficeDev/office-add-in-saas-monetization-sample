@@ -1,6 +1,6 @@
-# Create Sample Web App AAD Application
+# Create sample web app Azure AD application
 
-1. Sign in to your Azure Account through the Azure portal.
+1. Sign in to your Azure account through the Azure portal.
 1. Click **Azure Active Directory**.
 1. Click **App registrations**.
 1. Click **New registration**.
@@ -8,9 +8,11 @@
 1. In the Supported account types section, select **Accounts in any organizational directory (Any Azure AD directory - Multitenant)**.
 1. Click **Register**.
 1. Click **Add a Redirect URI**.
-1. Enter the following Web Redirect URIs.
+1. Enter the following web redirect URIs:
+
 	`https://localhost:44381/signin-oidc`
 	`https://localhost:44381/`
+
 1. Click **Save**.
 1. In the **Implicit grant** section, check the **ID tokens** checkbox.
 1. Click **Save**.

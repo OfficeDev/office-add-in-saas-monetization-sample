@@ -29,9 +29,12 @@ foreach ($app in $json.apps)
 $webApiConfig = $json.apps |Where-Object {$_.appName -eq "webApi"}
 $webApiPermissionId = $webApiConfig.bodyParameter.apiOauth2PermissionScopes.id
 $preAuthorizedWebApi1=@{AppId=$result.webApp.AppId;PermissionIds=$webApiPermissionId};
-$preAuthorizedWebApi2=@{AppId=$result.outlookAddin.AppId;PermissionIds=$webApiPermissionId};
-$preAuthorizedWebApi3=@{AppId=$result.appResource.AppId;PermissionIds=$webApiPermissionId};
-$preAuthorizedWebApis = @($preAuthorizedWebApi1,$preAuthorizedWebApi2,$preAuthorizedWebApi3);
+$preAuthorizedWebApi2=@{AppId=$result.outlookAddIn.AppId;PermissionIds=$webApiPermissionId};
+$preAuthorizedWebApi3=@{AppId=$result.wordAddIn.AppId;PermissionIds=$webApiPermissionId};
+$preAuthorizedWebApi4=@{AppId=$result.excelAddIn.AppId;PermissionIds=$webApiPermissionId};
+$preAuthorizedWebApi5=@{AppId=$result.powerpointAddIn.AppId;PermissionIds=$webApiPermissionId};
+$preAuthorizedWebApi6=@{AppId=$result.appResource.AppId;PermissionIds=$webApiPermissionId};
+$preAuthorizedWebApis = @($preAuthorizedWebApi1,$preAuthorizedWebApi2,$preAuthorizedWebApi3,$preAuthorizedWebApi4,$preAuthorizedWebApi5,$preAuthorizedWebApi6);
 
 #Update-Application method has bug, the -ApplicationId parameter is id instead of appid.
 Update-MgApplication -ApplicationId $result.webApi.id -ApiPreAuthorizedApplications $preAuthorizedWebApis -IdentifierUris "api://$($result.webApi.appId)"
@@ -49,10 +52,26 @@ $webAppRequired += $exposedResource
 $webAppRequired += $result.webApp.requiredResourceAccess
 Update-MgApplication -ApplicationId $result.webApp.id -RequiredResourceAccess $webAppRequired
 
-$outlookAddinRequired = @()
-$outlookAddinRequired += $exposedResource
-$outlookAddinRequired += $result.outlookAddin.requiredResourceAccess
-Update-MgApplication -ApplicationId $result.outlookAddin.id -RequiredResourceAccess $outlookAddinRequired
+$outlookAddInRequired = @()
+$outlookAddInRequired += $exposedResource
+$outlookAddInRequired += $result.outlookAddIn.requiredResourceAccess
+Update-MgApplication -ApplicationId $result.outlookAddIn.id -RequiredResourceAccess $outlookAddInRequired
+
+$wordAddInRequired = @()
+$wordAddInRequired += $exposedResource
+$wordAddInRequired += $result.wordAddIn.requiredResourceAccess
+Update-MgApplication -ApplicationId $result.wordAddIn.id -RequiredResourceAccess $wordAddInRequired
+
+$excelAddInRequired = @()
+$excelAddInRequired += $exposedResource
+$excelAddInRequired += $result.excelAddIn.requiredResourceAccess
+Update-MgApplication -ApplicationId $result.excelAddIn.id -RequiredResourceAccess $excelAddInRequired
+
+$powerpointAddInRequired = @()
+$powerpointAddInRequired += $exposedResource
+$powerpointAddInRequired += $result.powerpointAddIn.requiredResourceAccess
+Update-MgApplication -ApplicationId $result.powerpointAddIn.id -RequiredResourceAccess $powerpointAddInRequired
+
 
 $appResourceRequired = @()
 $appResourceRequired += $exposedResource
@@ -66,8 +85,17 @@ Write-Host "WebApi Id: $($result.webApi.appId)" -ForegroundColor Green
 Write-Host "WebApi ClientSecret: $($result.webApi.appSecret)" -ForegroundColor Green
 Write-Host "WebApi IdentifierUri: $($result.webApi.identifierUris)" -ForegroundColor Green
 Write-Host ""
-Write-Host "outlookAddin Id: $($result.outlookAddin.appId)" -ForegroundColor Green
-Write-Host "outlookAddin ClientSecret: $($result.outlookAddin.appSecret)" -ForegroundColor Green
+Write-Host "outlookAddIn Id: $($result.outlookAddIn.appId)" -ForegroundColor Green
+Write-Host "outlookAddIn ClientSecret: $($result.outlookAddIn.appSecret)" -ForegroundColor Green
+Write-Host ""
+Write-Host "wordAddIn Id: $($result.wordAddIn.appId)" -ForegroundColor Green
+Write-Host "wordAddIn ClientSecret: $($result.wordAddIn.appSecret)" -ForegroundColor Green
+Write-Host ""
+Write-Host "excelAddIn Id: $($result.excelAddIn.appId)" -ForegroundColor Green
+Write-Host "excelAddIn ClientSecret: $($result.excelAddIn.appSecret)" -ForegroundColor Green
+Write-Host ""
+Write-Host "powerpointAddIn Id: $($result.powerpointAddIn.appId)" -ForegroundColor Green
+Write-Host "powerpointAddIn ClientSecret: $($result.powerpointAddIn.appSecret)" -ForegroundColor Green
 Write-Host ""
 Write-Host "appResource Id: $($result.appResource.appId)" -ForegroundColor Green
 Write-Host "Completed!" -ForegroundColor White
