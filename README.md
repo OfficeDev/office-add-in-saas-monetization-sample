@@ -21,7 +21,7 @@ This code sample demonstrates how Microsoft ISVs can create a simple license man
 Follow the instructions in the deployment guides to install and configure the sample.
 
 - [Sample deployment guide](/Deployment/DeploymentGuide.MD)
-- [SPFx add-in deployment guide](/Deployment/SPFx/DeploymentGuide.md)
+- [SPFx deployment guide](/Deployment/SPFx/DeploymentGuide.md)
 - Office add-ins deployment guides:
    -  [Outlook add-in deployment guide](/Deployment/AddIn/OutlookAddInDeploymentGuide.md)
    -  [Word add-in deployment guide](/Deployment/AddIn/WordAddInDeploymentGuide.md)
@@ -49,7 +49,7 @@ This section links to the various README files associated with the projects incl
 - [PowerPointAddinWeb](/MonetizationCodeSample/PowerPointAddinWeb/README.MD)
 - [SaaSSampleWebApi](/MonetizationCodeSample/SaaSSampleWebApi/README.MD)
 - [SaaSSampleWebApp](/MonetizationCodeSample/SaaSSampleWebApp/README.MD)
-- [SPFXAddIn](/MonetizationCodeSample/SPFXAddIn/README.md)
+- [SPFx](/MonetizationCodeSample/SPFX/README.md)
 
 ## Appendix
 
@@ -65,6 +65,14 @@ This matrix describes the UI actions and how they correlate to different API cal
 | ![](images/contoso_app_quantity.png)     | Update the status of an operation in plan/quantity changed process<br/><br/>HttpPatch<br/> https://marketplaceapi.microsoft.com/api/saas/subscriptions/0aa95e32-8be7-4e5e-94f9-563f6d7d9dcd/operations/7688ae05-1579-4fdd-be89-12b45f0a4ef3?api-version=2018-09-15                                                                                                          | Yes             | Yes            | No                                                                        | No                                                                              |
 | ![](images/contoso_app_quantity.png)     | Query operations in plan/quantity changed process<br/><br/>HttpPatch<br/> https://marketplaceapi.microsoft.com/api/saas/subscriptions/0aa95e32-8be7-4e5e-94f9-563f6d7d9dcd/operations?api-version=2018-09-15                                                                                                                                                                | Yes             | Yes            | Yes                                                                       | No                                                                              |
 | ![](images/contoso_app_quantity.png)     | Webhook on the SaaS service                                                                                                                                                                                                                                                                                                                                                 | No              | No             | No                                                                        | No                                                                              |
+
+## SharePoint Provider-hosted Add-in Note
+
+A Provider-Hosted SharePoint Add-in cannot target a .NETCORE web project.  In this sample, the Provider-Hosted SharePoint Add-in web project targets a .NET Framework project. 
+
+In all of the other Add-ins in this sample, we get the OfferID from the SaaSOfferMockData project.  However, the SaaSOfferMockData project is a .NETCORE project.  Therefore, we cannot reference it in the Provider-Hosted SharePoint Add-in project.
+
+To work around this technical limitation, the OfferID is hardcoded in the AzureADAuthController.cs class. 
 
 ## Copyright
 

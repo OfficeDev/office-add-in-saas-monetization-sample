@@ -1,4 +1,4 @@
-# Monetization SPFx Add-in
+# Monetization SPFx
 
 # Installation
 
@@ -30,6 +30,7 @@
 
 	>**Note:** You are only replacing a portion of the URL.  Refer to the picture below to see which portion of the URL to replace.**
 	
+
  	**Save** the file.
 
    ![image-Deploy](Images/18.png)

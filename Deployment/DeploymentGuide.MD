@@ -95,7 +95,7 @@ You now have completed the deployment.
 
 ## Install sample add-ins
 
-- [SPFx add-in](./SPFx/DeploymentGuide.md)
+- [SPFx](./SPFx/DeploymentGuide.md)
 - Office add-ins:
    -  [Outlook add-in](./AddIn/OutlookAddInDeploymentGuide.md)
    -  [Word add-in](./AddIn/WordAddInDeploymentGuide.md)
