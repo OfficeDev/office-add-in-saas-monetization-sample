@@ -49,7 +49,7 @@ This section links to the various README files associated with the projects incl
 - [PowerPointAddinWeb](/MonetizationCodeSample/PowerPointAddinWeb/README.MD)
 - [SaaSSampleWebApi](/MonetizationCodeSample/SaaSSampleWebApi/README.MD)
 - [SaaSSampleWebApp](/MonetizationCodeSample/SaaSSampleWebApp/README.MD)
-- [SPFx](/MonetizationCodeSample/SPFX/README.md)
+- [SPFx](/MonetizationCodeSample/SPFx/README.md)
 
 ## Appendix
 
