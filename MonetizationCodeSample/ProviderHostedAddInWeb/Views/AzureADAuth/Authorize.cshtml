@@ -1,0 +1,40 @@
+﻿@model ProviderHostedAddInWeb.Models.Activation
+@{
+    ViewBag.Title = "Authorize";
+    Layout = "~/Views/Shared/_AddInLayout.cshtml";
+}
+<div id="content-main" class="ms-Grid" dir="ltr">
+    @if (Model != null)
+    {
+    <div class="ms-Grid-row" align="center">
+        <h2 class="ms-font-l" id="welcome">Welcome  @ViewBag.accountName</h2>
+    </div>
+    <div class="ms-Grid-row" align="center">
+        <span id="licenseResult">
+        </span>
+    </div>
+    }
+    else
+    {
+    <div class="ms-Grid-row" align="center">
+        <span id="errorResult">Error</span>
+    </div>
+    }
+
+</div>
+@section scripts {
+<script>
+    var available = @Model.AvailableLicenseQuantity != null ? @Model.AvailableLicenseQuantity: 0;
+    var overrun = '@Model.AllowOverAssignment' === 'False' ? "disabled" : "enabled";
+    var autoLicense = '@Model.FirstComeFirstServedAssignment' === 'False' ? "disabled" : "enabled";
+    console.log(`DEBUG: You have ${available} licenses available in your tenant`);
+    console.log(`DEBUG: @Model.Reason`);
+    console.log(`DEBUG: Overrun is ${overrun}`);
+    console.log(`DEBUG: Auto-license-assignment is ${autoLicense}`);
+
+    $(function () {
+        $("#licenseResult").text('@Model.Status' === 'Success' ? "You do have a paid license " : "You don't have a paid license ");
+    })
+</script>
+}
+

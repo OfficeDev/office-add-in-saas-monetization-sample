@@ -1,6 +1,6 @@
 # Create sample PowerPoint add-in Azure AD application
 
-1. Sign in to your Azure account through the Azure portal.
+1. Sign in to your Azure Account through the Azure portal.
 1. Click **Azure Active Directory**.
 1. Click **App registrations**.
 1. Click **New registration**.

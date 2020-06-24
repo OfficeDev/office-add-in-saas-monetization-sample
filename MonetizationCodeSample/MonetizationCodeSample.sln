@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSourceMockWebApp", "AppS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaaSOfferMockData", "MockAppData\SaaSOfferMockData.csproj", "{C9B7F2F1-2509-476C-9E02-806E5B2F2A18}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SPFx", "SPFx", "{29035954-11CC-4BA5-9041-12D253C62BCD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordAddIn", "WordAddIn\WordAddIn.csproj", "{16DEDB7B-BDB9-41FC-AB2E-5DAE6F640602}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelAddIn", "ExcelAddIn\ExcelAddIn.csproj", "{F81415A6-EF66-4B57-AC4D-594F4212C3F3}"
@@ -31,26 +29,34 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlookAddIn", "OutlookAddI
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlookAddInWeb", "OutlookAddInWeb\OutlookAddInWeb.csproj", "{B276096C-1487-4FD0-A4E7-023A6D76811B}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SPFx", "SPFx\", "{8ED4ADF4-5329-4AE0-A4B5-43DD1EE40E1F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProviderHostedAddIn", "ProviderHostedAddIn\ProviderHostedAddIn.csproj", "{6CE3852A-C34A-4FF1-85B7-C637F769F365}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProviderHostedAddInWeb", "ProviderHostedAddInWeb\ProviderHostedAddInWeb.csproj", "{8F6282AA-9C41-41F3-8589-A12D8BAE2504}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SPFx", "SPFx", "{E0ABB469-7DA6-448C-84B0-794540E7984A}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SPFX", "SPFx\", "{7722E247-1705-4032-9FB4-12CB7729416C}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_59924"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_50116"
 		Debug.AspNetCompiler.PhysicalPath = "SPFx\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59924\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50116\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_59924"
+		Release.AspNetCompiler.VirtualPath = "/localhost_50116"
 		Release.AspNetCompiler.PhysicalPath = "SPFx\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59924\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50116\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "59924"
+		VWDPort = "50116"
 		SlnRelativePath = "SPFx\"
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointHostedAddIn", "SharePointHostedAddIn\SharePointHostedAddIn.csproj", "{13B18F83-A918-484C-A2C4-253E8EE03928}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -118,16 +124,32 @@ Global
 		{B276096C-1487-4FD0-A4E7-023A6D76811B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B276096C-1487-4FD0-A4E7-023A6D76811B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B276096C-1487-4FD0-A4E7-023A6D76811B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8ED4ADF4-5329-4AE0-A4B5-43DD1EE40E1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8ED4ADF4-5329-4AE0-A4B5-43DD1EE40E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8ED4ADF4-5329-4AE0-A4B5-43DD1EE40E1F}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{8ED4ADF4-5329-4AE0-A4B5-43DD1EE40E1F}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{6CE3852A-C34A-4FF1-85B7-C637F769F365}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CE3852A-C34A-4FF1-85B7-C637F769F365}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CE3852A-C34A-4FF1-85B7-C637F769F365}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6CE3852A-C34A-4FF1-85B7-C637F769F365}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CE3852A-C34A-4FF1-85B7-C637F769F365}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CE3852A-C34A-4FF1-85B7-C637F769F365}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8F6282AA-9C41-41F3-8589-A12D8BAE2504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F6282AA-9C41-41F3-8589-A12D8BAE2504}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F6282AA-9C41-41F3-8589-A12D8BAE2504}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F6282AA-9C41-41F3-8589-A12D8BAE2504}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7722E247-1705-4032-9FB4-12CB7729416C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7722E247-1705-4032-9FB4-12CB7729416C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7722E247-1705-4032-9FB4-12CB7729416C}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{7722E247-1705-4032-9FB4-12CB7729416C}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{13B18F83-A918-484C-A2C4-253E8EE03928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13B18F83-A918-484C-A2C4-253E8EE03928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13B18F83-A918-484C-A2C4-253E8EE03928}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{13B18F83-A918-484C-A2C4-253E8EE03928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13B18F83-A918-484C-A2C4-253E8EE03928}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13B18F83-A918-484C-A2C4-253E8EE03928}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{8ED4ADF4-5329-4AE0-A4B5-43DD1EE40E1F} = {29035954-11CC-4BA5-9041-12D253C62BCD}
+		{7722E247-1705-4032-9FB4-12CB7729416C} = {E0ABB469-7DA6-448C-84B0-794540E7984A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5717D262-3101-41C8-8621-75A6023CF518}

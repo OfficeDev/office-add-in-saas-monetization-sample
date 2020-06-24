@@ -158,6 +158,27 @@
       }
     },
     {
+      "appName": "providerHostedAddIn",
+      "passwordCredential": {
+        "displayName": "devKey"
+      },
+      "bodyParameter": {
+        "displayName": "Contoso Monetization Code Sample Provider Hosted Addin Dev",
+        "signInAudience": "AzureADMultipleOrgs",
+        "requiredResourceAccess": [
+          {
+            "resourceAppId": "00000003-0000-0000-c000-000000000000",
+            "resourceAccess": [
+              {
+                "Id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+                "Type": "Scope"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
       "appName": "appResource",
       "passwordCredential": {
         "displayName": "devKey"

@@ -1,0 +1,35 @@
+﻿/* Place custom styles below */
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+#contentBox {
+    margin: auto auto;
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+    .footer .ms-Button {
+        text-decoration: none;
+    }
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+
+    .logo span {
+        font-size: 18px;
+        margin-left: 10px;
+    }
+#content-main .ms-Grid-row {
+text-align:center;
+}

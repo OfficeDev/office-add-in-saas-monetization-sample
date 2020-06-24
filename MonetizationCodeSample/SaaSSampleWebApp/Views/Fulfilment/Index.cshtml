@@ -10,7 +10,7 @@ Licensed under the MIT License.
     ViewData["Title"] = "Fulfilment/Redemption Page";
 }
 
-@switch (ViewData["Section"].ToString())
+@switch (Convert.ToString(ViewData["Section"]))
 {
     case "redirectFromAppSource":
         <div class="fulfilment center">

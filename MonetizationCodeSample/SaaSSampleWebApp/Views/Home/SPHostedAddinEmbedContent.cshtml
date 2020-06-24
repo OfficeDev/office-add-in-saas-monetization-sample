@@ -1,0 +1,87 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+@*
+    Copyright (c) Microsoft Corporation.
+    Licensed under the MIT License.
+*@
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.min.css" />
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.components.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script type="text/javascript" src="https://alcdn.msauth.net/lib/1.3.1/js/msal.min.js" integrity="sha384-kb1EkR5mZZRISRcdpYMFQRBDBb/RG/tKvYeCbgFjLUhPu54tjm1O4OPkvmOMnpPJ" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div>
+        <a id="signInButton" class="ms-link-button" role="button" style="display:none">Validate License</a>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const loginHint = urlParams.get('loginHint');
+        console.log(loginHint);
+
+        // Configuration object constructed
+        const config = {
+            auth: {
+                clientId: '@Configuration.GetSection("AzureAd")["ClientId"]'
+            },
+            cache: {
+                cacheLocation: 'localStorage'
+            }
+        }
+
+        // create UserAgentApplication instance
+        const msalInstance = new Msal.UserAgentApplication(config);
+
+        const request = {
+            scopes: ['@Configuration.GetSection("SaaSWebApi")["Scopes"]'],
+            login_hint: loginHint,
+            extraQueryParameters: { domain_hint: 'organizations' }
+        }
+
+        msalInstance.acquireTokenSilent(request).then( response => {
+            parent.postMessage(response.accessToken, "*");
+        })
+        .catch(err => {
+            console.log(err);
+            document.getElementById("signInButton").style.display = "block";
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById("signInButton").addEventListener("click", () => {
+                const loginRequest = {
+                    scopes: ['@Configuration.GetSection("SaaSWebApi")["Scopes"]'], // optional Array<string>
+                    login_hint: loginHint
+                };
+
+                msalInstance.loginPopup(loginRequest)
+                    .then(() => {
+                        msalInstance.acquireTokenSilent(loginRequest)
+                            .then(response => {
+                                parent.postMessage(response.accessToken, "*");
+                                document.getElementById("signInButton").style.display = "none";
+                            })
+                            .catch(err => {
+                                console.log(err);
+                            });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            });
+        });
+    </script>
+</body>
+</html>

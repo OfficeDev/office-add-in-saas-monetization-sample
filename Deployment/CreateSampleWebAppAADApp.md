@@ -14,7 +14,7 @@
 	`https://localhost:44381/`
 
 1. Click **Save**.
-1. In the **Implicit grant** section, check the **ID tokens** checkbox.
+1. In the **Implicit grant** section, check the **ID tokens** and **Access tokens** checkboxes.
 1. Click **Save**.
 1. Click **API permissions**.
 1. Click **Microsoft Graph**.

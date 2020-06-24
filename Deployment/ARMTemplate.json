@@ -38,6 +38,12 @@
         "description": "The name of the powerpoint Addin that you wish to create."
       }
     },
+    "providerHostedAddInWebSiteName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the provider hosted Addin that you wish to create."
+      }
+    },
     "resourceMockWebSiteName": {
       "type": "string",
       "metadata": {
@@ -110,6 +116,12 @@
       "type": "string"
     },
     "powerpointAddInClientSecret": {
+      "type": "string"
+    },
+    "providerHostedAddInClientId": {
+      "type": "string"
+    },
+    "providerHostedAddInClientSecret": {
       "type": "string"
     },
     "sourceMockClientId": {
@@ -444,6 +456,42 @@
             "AzureAd:ClientSecret": "[parameters('powerpointAddInClientSecret')]",
             "AzureAd:SaaSAPI": "[concat(variables('webApiBaseAddress'),'/api/Subscriptions/CheckOrActivateLicense')]",
             "AzureAd:SaaSScopes": "[concat(parameters('webApiIdentifierUri'),'/user_impersonation')]"
+          }
+        }
+      ]
+    },
+    {
+      "apiVersion": "2018-02-01",
+      "name": "[parameters('providerHostedAddInWebSiteName')]",
+      "type": "Microsoft.Web/sites",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[variables('hostingPlanName')]"
+      ],
+      "tags": {
+        "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName')))]": "empty",
+        "displayName": "Website"
+      },
+      "properties": {
+        "name": "[parameters('providerHostedAddInWebSiteName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+        "siteConfig": {
+          "alwaysOn": false
+        }
+      },
+      "resources": [
+        {
+          "apiVersion": "2018-02-01",
+          "type": "config",
+          "name": "appsettings",
+          "dependsOn": [
+            "[parameters('providerHostedAddInWebSiteName')]"
+          ],
+          "properties": {
+            "AAD:ClientID": "[parameters('providerHostedAddInClientId')]",
+            "AAD:ClientSecret": "[parameters('providerHostedAddInClientSecret')]",
+            "SaaSAPI": "[concat(variables('webApiBaseAddress'),'/api/Subscriptions/CheckOrActivateLicense')]",
+            "SaaSScopes": "[concat(parameters('webApiIdentifierUri'),'/user_impersonation')]"
           }
         }
       ]

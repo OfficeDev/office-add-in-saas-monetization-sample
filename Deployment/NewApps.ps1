@@ -33,8 +33,9 @@ $preAuthorizedWebApi2=@{AppId=$result.outlookAddIn.AppId;PermissionIds=$webApiPe
 $preAuthorizedWebApi3=@{AppId=$result.wordAddIn.AppId;PermissionIds=$webApiPermissionId};
 $preAuthorizedWebApi4=@{AppId=$result.excelAddIn.AppId;PermissionIds=$webApiPermissionId};
 $preAuthorizedWebApi5=@{AppId=$result.powerpointAddIn.AppId;PermissionIds=$webApiPermissionId};
-$preAuthorizedWebApi6=@{AppId=$result.appResource.AppId;PermissionIds=$webApiPermissionId};
-$preAuthorizedWebApis = @($preAuthorizedWebApi1,$preAuthorizedWebApi2,$preAuthorizedWebApi3,$preAuthorizedWebApi4,$preAuthorizedWebApi5,$preAuthorizedWebApi6);
+$preAuthorizedWebApi6=@{AppId=$result.providerHostedAddIn.AppId;PermissionIds=$webApiPermissionId};
+$preAuthorizedWebApi7=@{AppId=$result.appResource.AppId;PermissionIds=$webApiPermissionId};
+$preAuthorizedWebApis = @($preAuthorizedWebApi1,$preAuthorizedWebApi2,$preAuthorizedWebApi3,$preAuthorizedWebApi4,$preAuthorizedWebApi5,$preAuthorizedWebApi6,$preAuthorizedWebApi7);
 
 #Update-Application method has bug, the -ApplicationId parameter is id instead of appid.
 Update-MgApplication -ApplicationId $result.webApi.id -ApiPreAuthorizedApplications $preAuthorizedWebApis -IdentifierUris "api://$($result.webApi.appId)"
@@ -72,6 +73,10 @@ $powerpointAddInRequired += $exposedResource
 $powerpointAddInRequired += $result.powerpointAddIn.requiredResourceAccess
 Update-MgApplication -ApplicationId $result.powerpointAddIn.id -RequiredResourceAccess $powerpointAddInRequired
 
+$providerHostedAddInRequired = @()
+$providerHostedAddInRequired += $exposedResource
+$providerHostedAddInRequired += $result.providerHostedAddIn.requiredResourceAccess
+Update-MgApplication -ApplicationId $result.providerHostedAddIn.id -RequiredResourceAccess $providerHostedAddInRequired
 
 $appResourceRequired = @()
 $appResourceRequired += $exposedResource
@@ -96,6 +101,9 @@ Write-Host "excelAddIn ClientSecret: $($result.excelAddIn.appSecret)" -Foregroun
 Write-Host ""
 Write-Host "powerpointAddIn Id: $($result.powerpointAddIn.appId)" -ForegroundColor Green
 Write-Host "powerpointAddIn ClientSecret: $($result.powerpointAddIn.appSecret)" -ForegroundColor Green
+Write-Host ""
+Write-Host "providerHostedAddIn Id: $($result.providerHostedAddIn.appId)" -ForegroundColor Green
+Write-Host "providerHostedAddIn ClientSecret: $($result.providerHostedAddIn.appSecret)" -ForegroundColor Green
 Write-Host ""
 Write-Host "appResource Id: $($result.appResource.appId)" -ForegroundColor Green
 Write-Host "Completed!" -ForegroundColor White

@@ -20,6 +20,9 @@
     "powerpointAddInWebSiteName": {
       "value": "contosomonetizationpowerpointaddintest"
     },
+    "providerHostedAddInWebSiteName": {
+      "value": "contosomonetizationproviderhostedaddintest"
+    },
     "resourceMockWebSiteName": {
       "value": "contosomonetizationappsourcetest"
     },
@@ -79,6 +82,12 @@
     },
     "powerpointAddInClientSecret": {
       "value": "uQI6UIR_uP-BT-.wGkSrUiWM40yQh5U?"
+    },
+    "providerHostedAddInClientId": {
+      "value": "e797a2d4-a789-4b55-8308-d7ee5c889219"
+    },
+    "providerHostedAddInClientSecret": {
+      "value": "XkD42@JMWRIb8hWVoL=zGg]2N.P6?rNl"
     },
     "sourceMockClientId": {
       "value": "a484cee8-dec5-4409-a831-2b186821f5d5"
