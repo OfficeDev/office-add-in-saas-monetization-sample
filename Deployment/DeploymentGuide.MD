@@ -87,11 +87,7 @@ When you're finished, the screen will indicate that all permissions have been gr
 ## Update Azure AD applications
 
 1. In the command line, change to the **.\Deployment** directory.
-
-1. Run the script `Connect-Graph `
-
-   ![Code Path](Images/3.png)
-
+1. Run the command `Connect-Graph -Scopes "User.Read","Application.ReadWrite.All" -TenantId "[PUT_YOUR_TENANTID_HERE]"`
 1. Run the script `.\UpdateApps.ps1 -armConfig .\ARMParameters.json ` 
 
    ![Code Path](Images/11.png)
@@ -114,6 +110,7 @@ You now have completed the deployment.
 If you want to remove all Azure AD applications and sites, you can do the following:
 
 1. Open PowerShell 7 and go to the **.\Deployment** directory.
-2. Run the Powershell command `Remove-AzResourceGroup -name <resource group name>` and pay attention to replacing **&lt;resource group name&gt;** with your resource group name.
-3. Go to the **.\Deployment** directory.
-4. Run the script `.\RemoveApps.ps1 -config .\NewApps.json`.
+1. Run the Powershell command `Connect-Graph -Scopes "User.Read","Application.ReadWrite.All" -TenantId "[PUT_YOUR_TENANTID_HERE]"`
+1. Run the Powershell command `Remove-AzResourceGroup -name <resource group name>` and pay attention to replacing **&lt;resource group name&gt;** with your resource group name.
+1. Go to the **.\Deployment** directory.
+1. Run the script `.\RemoveApps.ps1 -config .\NewApps.json`.
