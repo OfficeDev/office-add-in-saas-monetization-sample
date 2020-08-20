@@ -13,7 +13,7 @@ foreach ($app in $json.apps)
 {
     #$app.bodyParameter
     Get-MgApplication -top 400|Where-Object {$_.DisplayName -eq $app.bodyParameter.displayName} |ForEach-Object {
-        Remove-Application -ApplicationId $_.Id
+        Remove-MgApplication -ApplicationId $_.Id
     }
     Write-Host "Remove $($app.bodyParameter.displayName)."
 }
