@@ -6,13 +6,13 @@
 1. Click **New registration**.
 1. Name the application **Contoso Monetization Code Sample App Source Dev**. 
 1. In the Supported account types section, select **Accounts in any organizational directory (Any Azure AD directory - Multitenant)**.
-1. Click **Register**.
-1. Click **Add a Redirect URI**.
+1. In the Redirect URI section, add the below URI keeping **Web** Selected.
 1. Enter the following Web Redirect URIs:
 	`https://localhost:44381/signin-oidc`
 	`https://localhost:44381/`
-1. Click **Save**.
-1. In the **Implicit grant** section, check the **ID tokens** checkbox.
+1. Click **Register**.
+1. Click **Authentication**.
+1. In the **Implicit grant and Hybrid Flows** section, check the **ID tokens** checkbox.
 1. Click **Save**.
 1. Click **API permissions**.
 1. Click **Microsoft Graph**.
