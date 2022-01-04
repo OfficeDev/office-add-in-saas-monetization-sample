@@ -38,7 +38,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     });
 
     document.getElementById('assignedusers').addEventListener('click', (ev) => {
-        var target = ev.toElement;
+        var target = ev.toElement || ev.target;
         if (target.classList.contains('remove-button')) {
             DialogComponents.forEach(d => {
                 if (d._dialog.attributes['id'].value === 'confirmationDialog') {

@@ -28,7 +28,7 @@ namespace SaaSSampleWebApp.Services
         {
             var graphClient = GetGraphServiceClient();
 
-            var pagedItems = await graphClient.Me.MemberOf.Request().Top(1).GetAsync();
+            var pagedItems = await graphClient.Me.MemberOf.Request().GetAsync();
 
             foreach (var directObject in pagedItems.CurrentPage)
             {

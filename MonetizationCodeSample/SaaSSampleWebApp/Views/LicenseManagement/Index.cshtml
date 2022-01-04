@@ -47,18 +47,6 @@ Licensed under the MIT License.
                     <li><label>Assigned License Quantity:</label><span id="assignedLicenseQuantity"></span></li>
                 </ul>
             </div>
-            @if (ViewData["Role"].ToString() == "LicenseAdmin")
-            {
-                <div class="d-flex flex-row align-items-end ml-5 purchase">
-                    <div class="ms-TextField mr-4">
-                        <label class="ms-Label">Add Licenses</label>
-                        <input id="addLicenseCount" class="ms-TextField-field" type="number" value="0" min="1" max="100" />
-                    </div>
-                    <button id="purchaseLicenseButton" class="ms-Button ms-Button--primary ms-Button--small">
-                        <span class="ms-Button-label">Purchase</span>
-                    </button>
-                </div>
-            }
         </div>
         <table class="ms-Table mt-3 mb-5">
             <thead>

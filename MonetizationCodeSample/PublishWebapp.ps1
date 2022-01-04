@@ -2,8 +2,7 @@
 # Licensed under the MIT License.
 
 param(
-    [Parameter(Mandatory)]
-    [String]$armConfig = (Read-Host -Prompt "Enter the ARMParameters.json file"),
+    [String]$armConfig = "..\Deployment\ARMParameters.json",
     [Parameter(Mandatory)]
     [String]$ResourceGroupName
 )

@@ -118,27 +118,15 @@ namespace AppSourceMockWebApp.Controllers
                     Status = SaasStatusEnum.InProgress,
                     PlanId = model.Subscription.PlanId
                 };
-            }
-            else
-            {
-                // create change quantity operation 
-                operation = new OperationUpdate()
-                {
-                    Id = Guid.NewGuid(),
-                    Action = SaaSActionEnum.ChangeQuantity,
-                    SubscriptionId = subscription.Id,
-                    Quantity = model.Subscription.Quantity,
-                    Status = SaasStatusEnum.InProgress,
-                    PlanId = model.Subscription.PlanId
-                };
-            }
-            model.OperationUpdateId = operation.Id;
 
-            // save data in cache
-            _cache.Set(operation.Id, operation, _cacheEntryOptions);
-            // webhook trigger: send notifaction to ISV service
-            await _webhookTriggerService.NotifyAsync(operation);
+                model.OperationUpdateId = operation.Id;
 
+                // save data in cache
+                _cache.Set(operation.Id, operation, _cacheEntryOptions);
+                // webhook trigger: send notifaction to ISV service
+                await _webhookTriggerService.NotifyAsync(operation);
+            }
+ 
             return View(model);
         }
 

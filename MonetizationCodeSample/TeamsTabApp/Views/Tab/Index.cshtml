@@ -1,0 +1,36 @@
+﻿@*
+    Copyright (c) Microsoft Corporation.
+    Licensed under the MIT License.
+*@
+
+<div>
+    <label for="tabChoice">Select the tab you would like to see: </label>
+    <select id="tabChoice" name="tabChoice">
+        <option value="Home">Home</option>
+    </select>
+</div>
+
+@section Scripts {
+    <script>
+        function createTabSettings() {
+            var tabChoice = document.getElementById('tabChoice');
+            var selectedTab = tabChoice[tabChoice.selectedIndex].value;
+            if (selectedTab == "Home") {
+                return {
+                    entityId: "teamstabapp",
+                    contentUrl: window.location.protocol + '//' + window.location.host + '/',
+                    suggestedDisplayName: "Monetization Code Sample - TeamsTabApp",
+                }
+            }
+        }
+
+        $(function () {
+            microsoftTeams.initialize();
+            microsoftTeams.settings.registerOnSaveHandler(function (saveEvent) {
+                microsoftTeams.settings.setSettings(createTabSettings());
+                saveEvent.notifySuccess();
+            });
+            microsoftTeams.settings.setValidityState(true)
+        });
+    </script>
+}

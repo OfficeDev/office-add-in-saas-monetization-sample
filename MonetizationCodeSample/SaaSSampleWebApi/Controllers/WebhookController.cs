@@ -116,7 +116,7 @@ namespace SaaSSampleWebApi.Controllers
                     $"{_configuration["SaaSfulfillmentAPIs:ApiEndPoint"]}/api/saas/subscriptions/{subscriptionId}/operations/{operationId}?api-version={_configuration["SaaSfulfillmentAPIs:ApiVersion"]}");
 
             // the token is not required for Mock APIs 
-            //requestMessage.Headers.Authorization =new AuthenticationHeaderValue("Bearer", your_token);
+            // requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", your_token);
 
             var json = JsonConvert.SerializeObject(payload);
 

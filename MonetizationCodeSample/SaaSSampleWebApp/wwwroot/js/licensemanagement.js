@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     var tr = document.createElement('tr');
                     tr.innerHTML = `<td>${user.userEmail}</td>
                                     <td>${user.activationDateTime && moment(user.activationDateTime).isSame(new Date(), 'month') ? 'Yes' : 'No'}</td>
-                                    <td><span class="ms-Link remove-button" data-id="${ user.id }" data-email="${user.userEmail }">Remove</span></td>`;
+                                    <td><span class="ms-Link remove-button" data-id="${user.id}" data-email="${user.userEmail}">Remove</span></td>`;
 
                     document.getElementById('assignedusers').appendChild(tr);
                 });
@@ -69,7 +69,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         });
 
         document.getElementById('assignedusers').addEventListener('click', (ev) => {
-            var target = ev.toElement;
+            var target = ev.toElement || ev.target;
             var confirmElement = document.querySelector('#confirmationDialog span');
             if (target.classList.contains('remove-button')) {
                 DialogComponents.forEach(d => {
@@ -151,30 +151,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                 },
                 body: JSON.stringify(subscription)
             });
-        });
-
-        document.querySelector('#purchaseLicenseButton').addEventListener("click", async (event) => {
-            let addLicenseCount = document.querySelector('#addLicenseCount').value;
-            if (addLicenseCount > 0) {
-                event.currentTarget.disabled = true;
-
-                var formData = new FormData();
-                formData.append('quantity', addLicenseCount);
-
-                const purchaseLicense = await fetch(`${apiRootEndpoint}/subscriptions/${subscriptionId}/AddLicenseQuantity`, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': token
-                    },
-                    body: formData
-                });
-
-                if (purchaseLicense.status === 204) {
-                    setTimeout(() => {
-                        location.reload();
-                    }, 5000);
-                }
-            }
         });
     }
     else {

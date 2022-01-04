@@ -1,0 +1,44 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.7/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.7",
+    "version": "1.0.0",
+    "id": "8b3b9054-3e54-4d97-b362-af15ef47d866",
+    "packageName": "com.contoso.monetizationteambotjavascript",
+    "developer": {
+        "name": "Contoso",
+        "websiteUrl": "https://www.contoso.com",
+        "privacyUrl": "https://www.contoso.com/privacy",
+        "termsOfUseUrl": "https://www.contoso.com/termofuse"
+    },
+    "icons": {
+        "color": "color.png",
+        "outline": "outline.png"
+    },
+    "name": {
+        "short": "MonetizationTeamsBotJs",
+        "full": "MonetizationCodeSampleTeamBotJavaScript"
+    },
+    "description": {
+        "short": "MonetizationTeamsBotJs",
+        "full": "MonetizationCodeSampleTeamBotJavaScript"
+    },
+    "accentColor": "#FFFFFF",
+    "bots": [
+        {
+            "botId": "<TEAMSBOTJAVASCRIPTAADCLIENTID>",
+            "scopes": [
+                "personal"
+            ],
+            "supportsFiles": false,
+            "isNotificationOnly": false
+        }
+    ],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ],
+    "validDomains": [
+        "token.botframework.com",
+        "*.ngrok.io"
+    ]
+}

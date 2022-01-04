@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProviderHostedAddInWeb", "P
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SPFx", "SPFx", "{E0ABB469-7DA6-448C-84B0-794540E7984A}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SPFX", "SPFx\", "{7722E247-1705-4032-9FB4-12CB7729416C}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SPFx", "SPFx\", "{8ED4ADF4-5329-4AE0-A4B5-43DD1EE40E1F}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_50116"
@@ -54,6 +54,33 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SPFX", "SPFx\", "{7722E247-
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "50116"
 		SlnRelativePath = "SPFx\"
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsTabApp", "TeamsTabApp\TeamsTabApp.csproj", "{1D17E232-20C9-4295-BDA1-7AE542F3696C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsBotinCSharp", "TeamsBotinCSharp\TeamsBotinCSharp.csproj", "{E03D327F-179E-4D1E-9723-5A1CE8BAFF26}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TeamsBotJavascript", "TeamsBotJavascript", "{43E03D7E-76E5-4B20-BBCF-FE577BB64CCB}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TeamsBotinJavascript", "TeamsBotinJavascript\", "{6F88D355-FB03-4454-B9D1-48A2389FB024}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_13228"
+		Debug.AspNetCompiler.PhysicalPath = "TeamsBotinJavascript\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_13228\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_13228"
+		Release.AspNetCompiler.PhysicalPath = "TeamsBotinJavascript\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_13228\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "13228"
+		SlnRelativePath = "TeamsBotinJavascript\"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointHostedAddIn", "SharePointHostedAddIn\SharePointHostedAddIn.csproj", "{13B18F83-A918-484C-A2C4-253E8EE03928}"
@@ -134,10 +161,22 @@ Global
 		{8F6282AA-9C41-41F3-8589-A12D8BAE2504}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F6282AA-9C41-41F3-8589-A12D8BAE2504}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F6282AA-9C41-41F3-8589-A12D8BAE2504}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7722E247-1705-4032-9FB4-12CB7729416C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7722E247-1705-4032-9FB4-12CB7729416C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7722E247-1705-4032-9FB4-12CB7729416C}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{7722E247-1705-4032-9FB4-12CB7729416C}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{8ED4ADF4-5329-4AE0-A4B5-43DD1EE40E1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ED4ADF4-5329-4AE0-A4B5-43DD1EE40E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ED4ADF4-5329-4AE0-A4B5-43DD1EE40E1F}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ED4ADF4-5329-4AE0-A4B5-43DD1EE40E1F}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{1D17E232-20C9-4295-BDA1-7AE542F3696C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D17E232-20C9-4295-BDA1-7AE542F3696C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D17E232-20C9-4295-BDA1-7AE542F3696C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D17E232-20C9-4295-BDA1-7AE542F3696C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E03D327F-179E-4D1E-9723-5A1CE8BAFF26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E03D327F-179E-4D1E-9723-5A1CE8BAFF26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E03D327F-179E-4D1E-9723-5A1CE8BAFF26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E03D327F-179E-4D1E-9723-5A1CE8BAFF26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F88D355-FB03-4454-B9D1-48A2389FB024}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F88D355-FB03-4454-B9D1-48A2389FB024}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F88D355-FB03-4454-B9D1-48A2389FB024}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F88D355-FB03-4454-B9D1-48A2389FB024}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{13B18F83-A918-484C-A2C4-253E8EE03928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{13B18F83-A918-484C-A2C4-253E8EE03928}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13B18F83-A918-484C-A2C4-253E8EE03928}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -149,7 +188,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{7722E247-1705-4032-9FB4-12CB7729416C} = {E0ABB469-7DA6-448C-84B0-794540E7984A}
+		{8ED4ADF4-5329-4AE0-A4B5-43DD1EE40E1F} = {E0ABB469-7DA6-448C-84B0-794540E7984A}
+		{6F88D355-FB03-4454-B9D1-48A2389FB024} = {43E03D7E-76E5-4B20-BBCF-FE577BB64CCB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5717D262-3101-41C8-8621-75A6023CF518}

@@ -1,0 +1,96 @@
+﻿@*
+    Copyright (c) Microsoft Corporation.
+    Licensed under the MIT License.
+*@
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="content-main" class="ms-Grid" dir="ltr">
+    <div class="ms-Grid-row" align="center">
+        <h4 class="ms-font-l" id="welcome"></h4>
+    </div>
+    <div class="ms-Grid-row" align="center">
+        <span id="licenseResult"></span>
+    </div>
+    <div class="ms-Grid-row" align="center">
+        <span id="errorResult"></span>
+    </div>
+</div>
+
+<script>
+    (function () {
+        _teams_helper = {
+            groupId: undefined,
+            channelId: undefined,
+            authToken: undefined,
+            userObjectId: undefined,
+            getAsync: function () {
+                return new Promise((resolve, reject) => {
+                    TeamsHelper.get(function (teamContext) {
+                        resolve({ "Authorization": teamContext.authToken });
+                    });
+                });
+            },
+            get: function (CB) {
+                let that = TeamsHelper;
+                var authTokenRequest = {
+                    successCallback: function (result) {
+                        //if (!that.authToken) {
+                        //    console.log("Token: " + result);
+                        //}
+                        that.authToken = result;
+                        if (!that.groupId || !that.channelId || !that.tuid) {
+                            microsoftTeams.getContext(function (context) {
+                                that.groupId = context.groupId;
+                                that.channelId = context.channelId;
+                                that.userObjectId = context.userObjectId;
+
+                                jQuery.ajaxSetup({
+                                    beforeSend: function (xhr) {
+                                        xhr.setRequestHeader('Authorization', that.authToken);
+                                    }
+                                });
+                                CB({ teamId: that.groupId, channelId: that.channelId, authToken: that.authToken, userPrincipalName: context.userPrincipalName });
+                            });
+                        }
+                        else {
+                            jQuery.ajaxSetup({
+                                beforeSend: function (xhr) {
+                                    xhr.setRequestHeader('Authorization', that.authToken);
+                                }
+                            });
+                            CB({ teamId: that.groupId, channelId: that.channelId, authToken: that.authToken });
+                        }
+                    },
+                    failureCallback: function (error) {
+                        console.log("Failure: " + error);
+                    }
+                };
+                microsoftTeams.authentication.getAuthToken(authTokenRequest);
+            }
+        };
+        microsoftTeams.initialize();
+        this.TeamsHelper = _teams_helper;
+    })();
+
+    TeamsHelper.get(function (teamContext) {
+        $("#welcome").html("Welcome " + teamContext.userPrincipalName);
+
+        $.getJSON("/home/ValidateLicense")
+            .done(function (activation) {
+
+                $("#licenseResult").text(activation.status == "Failure" ? "You don't have a paid license " : "You do have a paid license ");
+                $("#errorResult").text("");
+
+                console.log(`DEBUG: You have ${activation.availableLicenseQuantity === null ? "0" : activation.availableLicenseQuantity} licenses available in your tenant`);
+                console.log(`DEBUG: ${activation.reason}`);
+                console.log(`DEBUG: Overrun is ${activation.allowOverAssignment === false ? "disabled" : "enabled"}`);
+                console.log(`DEBUG: Auto-license-assignment is ${activation.firstComeFirstServedAssignment === true ? "enabled" : "disabled"}`);
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                $("#errorResult").text("Unable to successfully authenticate user or authorize application. Error is: " + error);
+            });
+    });
+</script>

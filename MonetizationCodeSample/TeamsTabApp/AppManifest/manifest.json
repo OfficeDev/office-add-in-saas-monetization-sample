@@ -1,0 +1,48 @@
+﻿{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.5/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.5",
+  "id": "5d1c1431-9612-4958-ae37-67d5c69144f9",
+  "version": "1.0.0",
+  "packageName": "com.contoso.teamtabapp",
+  "developer": {
+    "name": "Contoso",
+    "websiteUrl": "https://contoso.com",
+    "privacyUrl": "https://contoso.com/privacy",
+    "termsOfUseUrl": "https://contoso.com/termsofuse",
+    "mpnId": ""
+  },
+  "name": {
+    "short": "TeamsTabApp",
+    "full": "MonetizationCodeSampleTeamsTabApp"
+  },
+  "description": {
+    "short": "short description here",
+    "full": "full description here"
+  },
+  "icons": {
+    "outline": "icon-outline.png",
+    "color": "icon-color.png"
+  },
+  "accentColor": "#D85028",
+  "configurableTabs": [
+    {
+      "configurationUrl": "https://<SUBDOMAIN>.ngrok.io/tab",
+      "canUpdateConfiguration": true,
+      "scopes": [
+        "team",
+        "groupchat"
+      ]
+    }
+  ],
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "*.ngrok.io"
+  ],
+  "webApplicationInfo": {
+    "id": "<TEAMSTABAPPAADCLIENTID>",
+    "resource": "api://<SUBDOMAIN>.ngrok.io/<TEAMSTABAPPAADCLIENTID>"
+  }
+}

@@ -1,30 +1,36 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion": "1.0.0.0",
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
   "parameters": {
     "webAppSiteName": {
-      "value": "contosomonetizationwebapptest"
+      "value": "contosomonetizationwebapp"
     },
     "webApiSiteName": {
-      "value": "contosomonetizationwebapitest"
+      "value": "contosomonetizationwebapi"
+    },
+    "botHandleCSName": {
+      "value": "contosomonetizationbotcs"
+    },
+    "botHandleJSName": {
+      "value": "contosomonetizationbotjs"
     },
     "outlookAddInWebSiteName": {
-      "value": "contosomonetizationoutlookaddintest"
+      "value": "contosomonetizationoutlookaddin"
     },
     "wordAddInWebSiteName": {
-      "value": "contosomonetizationwordaddintest"
+      "value": "contosomonetizationwordaddin"
     },
     "excelAddInWebSiteName": {
-      "value": "contosomonetizationexceladdintest"
+      "value": "contosomonetizationexceladdin"
     },
     "powerpointAddInWebSiteName": {
-      "value": "contosomonetizationpowerpointaddintest"
+      "value": "contosomonetizationpowerpointaddin"
     },
     "providerHostedAddInWebSiteName": {
-      "value": "contosomonetizationproviderhostedaddintest"
+      "value": "contosomonetizationproviderhostedaddin"
     },
     "resourceMockWebSiteName": {
-      "value": "contosomonetizationappsourcetest"
+      "value": "contosomonetizationappsource"
     },
     "domainName": {
       "value": "cand3.onmicrosoft.com"
@@ -36,7 +42,7 @@
       "value": "Monetizationadmin"
     },
     "sqlAdministratorLoginPassword": {
-      "value": "Beat@Monetization20"
+      "value": "pass@Word2021"
     },
     "sqlMockDatabaseName": {
       "value": "AppSourceMockWebAppDB"
@@ -45,55 +51,73 @@
       "value": "MonetizationSampleDB"
     },
     "webAppClientId": {
-      "value": "b10a1890-282c-45a1-b37d-c0aa31097add"
+      "value": ""
     },
     "webAppClientSecret": {
-      "value": "c85QlqIta=n1@4YRZsI/FzFY@r67D-Qj"
+      "value": ""
     },
     "webApiClientId": {
-      "value": "56672c27-a0f4-4f48-992d-441d57833cb0"
+      "value": ""
     },
     "webApiClientSecret": {
-      "value": "k4/H1Ng4Hd?dFDP0?K:P]89AH?v]Wo=m"
+      "value": ""
     },
     "webApiIdentifierUri": {
-      "value": "api://56672c27-a0f4-4f48-992d-441d57833cb0"
+      "value": ""
     },
     "outlookAddInClientId": {
-      "value": "09cc63ed-879a-425c-9ebb-28d612b8a4bc"
+      "value": ""
     },
     "outlookAddInClientSecret": {
-      "value": "/ndWMhQywFd5LbxZ]-MJUt/CfAkH0h46"
+      "value": ""
     },
     "wordAddInClientId": {
-      "value": "0f2dc1da-d4d9-4ae0-8d8c-155adaf0acd7"
+      "value": ""
     },
     "wordAddInClientSecret": {
-      "value": "-A0o04Wu.i7rmZQP[m:TNbmlSSZ/@FE-"
+      "value": ""
     },
     "excelAddInClientId": {
-      "value": "7360fcd1-49a3-41a8-8ab4-a1b97187f88e"
+      "value": ""
     },
     "excelAddInClientSecret": {
-      "value": "cUamCYAeit@b_]2mpDzBhVDz2.ep7mg7"
+      "value": ""
     },
     "powerpointAddInClientId": {
-      "value": "7710a53d-b355-4d5a-90f8-a659d10d87c0"
+      "value": ""
     },
     "powerpointAddInClientSecret": {
-      "value": "uQI6UIR_uP-BT-.wGkSrUiWM40yQh5U?"
+      "value": ""
     },
     "providerHostedAddInClientId": {
-      "value": "e797a2d4-a789-4b55-8308-d7ee5c889219"
+      "value": ""
     },
     "providerHostedAddInClientSecret": {
-      "value": "XkD42@JMWRIb8hWVoL=zGg]2N.P6?rNl"
+      "value": ""
+    },
+    "teamsTabAppClientId": {
+      "value": ""
+    },
+    "teamsTabAppClientSecret": {
+      "value": ""
+    },
+    "teamsBotCSharpClientId": {
+      "value": ""
+    },
+    "teamsBotCSharpClientSecret": {
+      "value": ""
+    },
+    "teamsBotJavaScriptClientId": {
+      "value": ""
+    },
+    "teamsBotJavaScriptClientSecretd": {
+      "value": ""
     },
     "sourceMockClientId": {
-      "value": "a484cee8-dec5-4409-a831-2b186821f5d5"
+      "value": ""
     },
     "tenantId": {
       "value": "organizations"
     }
   }
-  }
+}

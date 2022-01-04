@@ -36,8 +36,8 @@ namespace AppSourceMockWebApp.Controllers
             _webhookTriggerService = webhookTriggerService;
         }
 
-        // Resolve a subscription
-        // https://docs.microsoft.com/en-us/azure/marketplace/partner-center-portal/pc-saas-fulfillment-api-v2#resolve-a-subscription
+        // Resolve a purchased subscription
+        // https://docs.microsoft.com/en-us/azure/marketplace/partner-center-portal/pc-saas-fulfillment-api-v2#resolve-a-purchased-subscription
         [Route("subscriptions/resolve")]
         [HttpPost]
         public IActionResult ResolveSubscription()
@@ -84,7 +84,7 @@ namespace AppSourceMockWebApp.Controllers
         }
 
         // Get operation status
-        // https://docs.microsoft.com/en-us/azure/marketplace/partner-center-portal/pc-saas-fulfillment-api-v2#get-httpsmarketplaceapimicrosoftcomapisaassubscriptionssubscriptionidoperationsoperationidapi-versionapiversion
+        // https://docs.microsoft.com/en-us/azure/marketplace/partner-center-portal/pc-saas-fulfillment-api-v2#get-operation-status
         [Route("subscriptions/{subscriptionId}/operations/{operationId}")]
         [HttpGet]
         public IActionResult GetOperation([FromRoute]Guid subscriptionId, [FromRoute]Guid operationId)
@@ -97,8 +97,8 @@ namespace AppSourceMockWebApp.Controllers
             return BadRequest();
         }
 
-        //Update the status of an operation
-        // https://docs.microsoft.com/en-us/azure/marketplace/partner-center-portal/pc-saas-fulfillment-api-v2#patch-httpsmarketplaceapimicrosoftcomapisaassubscriptionssubscriptionidoperationsoperationidapi-versionapiversion
+        // Update the status of an operation
+        // https://docs.microsoft.com/en-us/azure/marketplace/partner-center-portal/pc-saas-fulfillment-api-v2#update-the-status-of-an-operation
         [Route("subscriptions/{subscriptionId}/operations/{operationId}")]
         [HttpPatch]
         public IActionResult PatchOperation([FromRoute]Guid subscriptionId, [FromRoute]Guid operationId)
@@ -130,32 +130,8 @@ namespace AppSourceMockWebApp.Controllers
             return BadRequest();
         }
 
-        // Change the quantity on the subscription
-        // https://docs.microsoft.com/en-us/azure/marketplace/partner-center-portal/pc-saas-fulfillment-api-v2#change-the-quantity-on-the-subscription
-        [Route("subscriptions/{subscriptionId}")]
-        [HttpPatch]
-        public IActionResult PatchSubscription([FromRoute]Guid subscriptionId, [FromBody] ChangeQuantityPayload changeQuantityPayload)
-        {
-            // create cancel subscription operation  
-            var operation = new OperationUpdate()
-            {
-                Id = Guid.NewGuid(),
-                Action = SaaSActionEnum.ChangeQuantity,
-                SubscriptionId = subscriptionId,
-                Quantity = changeQuantityPayload.Quantity,
-                Status = SaasStatusEnum.InProgress
-            };
-
-            // save data in cache.
-            _cache.Set(operation.Id, operation, _cacheEntryOptions);
-
-            _webhookTriggerService.NotifyAsync(operation);
-
-            return StatusCode(202);
-        }
-
-        // Delete a subscription
-        // https://docs.microsoft.com/en-us/azure/marketplace/partner-center-portal/pc-saas-fulfillment-api-v2#delete-a-subscription
+        // Cancel a subscription
+        // https://docs.microsoft.com/en-us/azure/marketplace/partner-center-portal/pc-saas-fulfillment-api-v2#cancel-a-subscription
         [Route("subscriptions/{subscriptionId}")]
         [HttpDelete]
         public IActionResult DeleteSubscription([FromRoute]Guid subscriptionId)

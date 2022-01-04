@@ -30,7 +30,7 @@ Licensed under the MIT License.
         </div>
         <div class="form-group">
             <label for="quantity">Quantity</label>
-            <input type="number" min="1" max="50" class="form-control" id="quantity" placeholder="" data-quantity="@Model.Subscription.Quantity" asp-for="@Model.Subscription.Quantity">
+            <input type="number" min="1" max="50" class="form-control" id="quantity" placeholder="" readonly data-quantity="@Model.Subscription.Quantity" asp-for="@Model.Subscription.Quantity">
         </div>
 
         <button type="submit" class="btn btn-primary" formaction="/Home/UpdateSubscription" formmethod="post">Update Subscription</button>

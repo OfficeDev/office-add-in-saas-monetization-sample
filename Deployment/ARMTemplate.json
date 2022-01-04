@@ -1,6 +1,6 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
   "parameters": {
     "webAppSiteName": {
       "type": "string",
@@ -12,6 +12,18 @@
       "type": "string",
       "metadata": {
         "description": "The name of the web api that you wish to create."
+      }
+    },
+    "botHandleCSName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the bot's registration that you wish to create."
+      }
+    },
+    "botHandleJSName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the bot's registration that you wish to create."
       }
     },
     "outlookAddInWebSiteName": {
@@ -51,10 +63,16 @@
       }
     },
     "domainName": {
-      "type": "string"
+      "type": "string",
+      "metadata": {
+        "description": "Primary domain name"
+      }
     },
     "directoryId": {
-      "type": "string"
+      "type": "string",
+      "metadata": {
+        "description": "Directory (tenant) ID"
+      }
     },
     "sqlAdministratorLogin": {
       "type": "string",
@@ -124,6 +142,24 @@
     "providerHostedAddInClientSecret": {
       "type": "string"
     },
+    "teamsTabAppClientId": {
+      "type": "string"
+    },
+    "teamsTabAppClientSecret": {
+      "type": "string"
+    },
+    "teamsBotCSharpClientId": {
+      "type": "string"
+    },
+    "teamsBotCSharpClientSecret": {
+      "type": "string"
+    },
+    "teamsBotJavaScriptClientId": {
+      "type": "string"
+    },
+    "teamsBotJavaScriptClientSecretd": {
+      "type": "string"
+    },
     "sourceMockClientId": {
       "type": "string"
     },
@@ -134,13 +170,17 @@
       "type": "string"
     }
   },
-    "variables": {
-      "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
-      "sqlServerName": "[concat('sqlserver', uniqueString(resourceGroup().id))]",
-      "webApiBaseAddress": "[concat('https://', parameters('webApiSiteName'), '.azurewebsites.net')]",
-      "webAppBaseAddress": "[concat('https://', parameters('webAppSiteName'), '.azurewebsites.net')]",
-      "resourceMockBaseAddress": "[concat('https://', parameters('resourceMockWebSiteName'), '.azurewebsites.net')]"
-    },
+  "variables": {
+    "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
+    "sqlServerName": "[concat('sqlserver', uniqueString(resourceGroup().id))]",
+    "webApiBaseAddress": "[concat('https://', parameters('webApiSiteName'), '.azurewebsites.net')]",
+    "webAppBaseAddress": "[concat('https://', parameters('webAppSiteName'), '.azurewebsites.net')]",
+    "resourceMockBaseAddress": "[concat('https://', parameters('resourceMockWebSiteName'), '.azurewebsites.net')]",
+    "botServices_contosomonetizationteamsbotcsharp_name": "[parameters('botHandleCSName')]",
+    "botServices_contosomonetizationteamsbotjavascript_name": "[parameters('botHandleJSName')]",
+    "botServices_contosomonetizationteamsbotcsharp_connection_name": "teamsbotincsharpconnection",
+    "botServices_contosomonetizationteamsbotjavascript_connection_name": "teamsbotinjavascriptconnection"
+  },
   "resources": [
     {
       "name": "[variables('sqlServerName')]",
@@ -164,9 +204,7 @@
             "displayName": "Database"
           },
           "apiVersion": "2014-04-01",
-          "dependsOn": [
-            "[variables('sqlServerName')]"
-          ],
+          "dependsOn": ["[variables('sqlServerName')]"],
           "properties": {
             "edition": "Basic",
             "collation": "SQL_Latin1_General_CP1_CI_AS",
@@ -182,9 +220,7 @@
             "displayName": "Database"
           },
           "apiVersion": "2014-04-01",
-          "dependsOn": [
-            "[variables('sqlServerName')]"
-          ],
+          "dependsOn": ["[variables('sqlServerName')]"],
           "properties": {
             "edition": "Basic",
             "collation": "SQL_Latin1_General_CP1_CI_AS",
@@ -195,9 +231,7 @@
         {
           "type": "firewallRules",
           "apiVersion": "2014-04-01",
-          "dependsOn": [
-            "[variables('sqlServerName')]"
-          ],
+          "dependsOn": ["[variables('sqlServerName')]"],
           "location": "[resourceGroup().location]",
           "name": "AllowAllWindowsAzureIps",
           "properties": {
@@ -228,9 +262,7 @@
       "name": "[parameters('webAppSiteName')]",
       "type": "Microsoft.Web/sites",
       "location": "[resourceGroup().location]",
-      "dependsOn": [
-        "[variables('hostingPlanName')]"
-      ],
+      "dependsOn": ["[variables('hostingPlanName')]"],
       "tags": {
         "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName')))]": "empty",
         "displayName": "Website"
@@ -247,9 +279,7 @@
           "apiVersion": "2018-02-01",
           "type": "config",
           "name": "appsettings",
-          "dependsOn": [
-            "[parameters('webAppSiteName')]"
-          ],
+          "dependsOn": ["[parameters('webAppSiteName')]"],
           "properties": {
             "AzureAd:Domain": "[parameters('domainName')]",
             "AzureAd:DirectoryId": "[parameters('directoryId')]",
@@ -268,9 +298,7 @@
       "name": "[parameters('webApiSiteName')]",
       "type": "Microsoft.Web/sites",
       "location": "[resourceGroup().location]",
-      "dependsOn": [
-        "[variables('hostingPlanName')]"
-      ],
+      "dependsOn": ["[variables('hostingPlanName')]"],
       "tags": {
         "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName')))]": "empty",
         "displayName": "Website"
@@ -302,9 +330,7 @@
           "apiVersion": "2018-02-01",
           "type": "config",
           "name": "appsettings",
-          "dependsOn": [
-            "[parameters('webApiSiteName')]"
-          ],
+          "dependsOn": ["[parameters('webApiSiteName')]"],
           "properties": {
             "AzureAd:Domain": "[parameters('domainName')]",
             "AzureAd:TenantId": "[parameters('tenantId')]",
@@ -321,9 +347,7 @@
       "name": "[parameters('outlookAddInWebSiteName')]",
       "type": "Microsoft.Web/sites",
       "location": "[resourceGroup().location]",
-      "dependsOn": [
-        "[variables('hostingPlanName')]"
-      ],
+      "dependsOn": ["[variables('hostingPlanName')]"],
       "tags": {
         "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName')))]": "empty",
         "displayName": "Website"
@@ -340,9 +364,7 @@
           "apiVersion": "2018-02-01",
           "type": "config",
           "name": "appsettings",
-          "dependsOn": [
-            "[parameters('outlookAddInWebSiteName')]"
-          ],
+          "dependsOn": ["[parameters('outlookAddInWebSiteName')]"],
           "properties": {
             "AzureAd:ClientId": "[parameters('outlookAddInClientId')]",
             "AzureAd:ClientSecret": "[parameters('outlookAddInClientSecret')]",
@@ -357,9 +379,7 @@
       "name": "[parameters('wordAddInWebSiteName')]",
       "type": "Microsoft.Web/sites",
       "location": "[resourceGroup().location]",
-      "dependsOn": [
-        "[variables('hostingPlanName')]"
-      ],
+      "dependsOn": ["[variables('hostingPlanName')]"],
       "tags": {
         "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName')))]": "empty",
         "displayName": "Website"
@@ -376,9 +396,7 @@
           "apiVersion": "2018-02-01",
           "type": "config",
           "name": "appsettings",
-          "dependsOn": [
-            "[parameters('wordAddInWebSiteName')]"
-          ],
+          "dependsOn": ["[parameters('wordAddInWebSiteName')]"],
           "properties": {
             "AzureAd:ClientId": "[parameters('wordAddInClientId')]",
             "AzureAd:ClientSecret": "[parameters('wordAddInClientSecret')]",
@@ -393,9 +411,7 @@
       "name": "[parameters('excelAddInWebSiteName')]",
       "type": "Microsoft.Web/sites",
       "location": "[resourceGroup().location]",
-      "dependsOn": [
-        "[variables('hostingPlanName')]"
-      ],
+      "dependsOn": ["[variables('hostingPlanName')]"],
       "tags": {
         "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName')))]": "empty",
         "displayName": "Website"
@@ -412,9 +428,7 @@
           "apiVersion": "2018-02-01",
           "type": "config",
           "name": "appsettings",
-          "dependsOn": [
-            "[parameters('excelAddInWebSiteName')]"
-          ],
+          "dependsOn": ["[parameters('excelAddInWebSiteName')]"],
           "properties": {
             "AzureAd:ClientId": "[parameters('excelAddInClientId')]",
             "AzureAd:ClientSecret": "[parameters('excelAddInClientSecret')]",
@@ -429,9 +443,7 @@
       "name": "[parameters('powerpointAddInWebSiteName')]",
       "type": "Microsoft.Web/sites",
       "location": "[resourceGroup().location]",
-      "dependsOn": [
-        "[variables('hostingPlanName')]"
-      ],
+      "dependsOn": ["[variables('hostingPlanName')]"],
       "tags": {
         "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName')))]": "empty",
         "displayName": "Website"
@@ -448,9 +460,7 @@
           "apiVersion": "2018-02-01",
           "type": "config",
           "name": "appsettings",
-          "dependsOn": [
-            "[parameters('powerpointAddInWebSiteName')]"
-          ],
+          "dependsOn": ["[parameters('powerpointAddInWebSiteName')]"],
           "properties": {
             "AzureAd:ClientId": "[parameters('powerpointAddInClientId')]",
             "AzureAd:ClientSecret": "[parameters('powerpointAddInClientSecret')]",
@@ -465,9 +475,7 @@
       "name": "[parameters('providerHostedAddInWebSiteName')]",
       "type": "Microsoft.Web/sites",
       "location": "[resourceGroup().location]",
-      "dependsOn": [
-        "[variables('hostingPlanName')]"
-      ],
+      "dependsOn": ["[variables('hostingPlanName')]"],
       "tags": {
         "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName')))]": "empty",
         "displayName": "Website"
@@ -484,9 +492,7 @@
           "apiVersion": "2018-02-01",
           "type": "config",
           "name": "appsettings",
-          "dependsOn": [
-            "[parameters('providerHostedAddInWebSiteName')]"
-          ],
+          "dependsOn": ["[parameters('providerHostedAddInWebSiteName')]"],
           "properties": {
             "AAD:ClientID": "[parameters('providerHostedAddInClientId')]",
             "AAD:ClientSecret": "[parameters('providerHostedAddInClientSecret')]",
@@ -501,9 +507,7 @@
       "name": "[parameters('resourceMockWebSiteName')]",
       "type": "Microsoft.Web/sites",
       "location": "[resourceGroup().location]",
-      "dependsOn": [
-        "[variables('hostingPlanName')]"
-      ],
+      "dependsOn": ["[variables('hostingPlanName')]"],
       "tags": {
         "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName')))]": "empty",
         "displayName": "Website"
@@ -535,9 +539,7 @@
           "apiVersion": "2018-02-01",
           "type": "config",
           "name": "appsettings",
-          "dependsOn": [
-            "[parameters('resourceMockWebSiteName')]"
-          ],
+          "dependsOn": ["[parameters('resourceMockWebSiteName')]"],
           "properties": {
             "AzureAd:Domain": "[parameters('domainName')]",
             "AzureAd:TenantId": "[parameters('tenantId')]",
@@ -547,17 +549,196 @@
           }
         }
       ]
+    },
+    {
+      "type": "Microsoft.BotService/botServices",
+      "apiVersion": "2018-07-12",
+      "name": "[variables('botServices_contosomonetizationteamsbotcsharp_name')]",
+      "location": "global",
+      "sku": {
+        "name": "F0"
+      },
+      "kind": "bot",
+      "properties": {
+        "displayName": "[variables('botServices_contosomonetizationteamsbotcsharp_name')]",
+        "iconUrl": "https://docs.botframework.com/static/devportal/client/images/bot-framework-default.png",
+        "msaAppId": "[parameters('teamsBotCSharpClientId')]",
+        "luisAppIds": [],
+        "endpoint": "https://BOTAPICSHARPURL.ngrok.io/api/messages"
+      },
+      "resources": [
+        {
+          "type": "Microsoft.BotService/botServices/channels",
+          "apiVersion": "2018-07-12",
+          "name": "[concat(variables('botServices_contosomonetizationteamsbotcsharp_name'), '/MsTeamsChannel')]",
+          "location": "global",
+          "dependsOn": [
+            "[resourceId('Microsoft.BotService/botServices', variables('botServices_contosomonetizationteamsbotcsharp_name'))]"
+          ],
+          "properties": {
+            "properties": {
+              "enableCalling": false,
+              "isEnabled": true
+            },
+            "channelName": "MsTeamsChannel"
+          }
+        },
+        {
+          "type": "Microsoft.BotService/botServices/channels",
+          "apiVersion": "2018-07-12",
+          "name": "[concat(variables('botServices_contosomonetizationteamsbotcsharp_name'), '/WebChatChannel')]",
+          "location": "global",
+          "dependsOn": [
+            "[resourceId('Microsoft.BotService/botServices', variables('botServices_contosomonetizationteamsbotcsharp_name'))]"
+          ],
+          "properties": {
+            "properties": {
+              "sites": [
+                {
+                  "siteName": "Default Site",
+                  "isEnabled": true,
+                  "enablePreview": true
+                }
+              ]
+            },
+            "channelName": "WebChatChannel"
+          }
+        },
+        {
+          "type": "Microsoft.BotService/botServices/connections",
+          "apiVersion": "2018-07-12",
+          "name": "[concat(variables('botServices_contosomonetizationteamsbotcsharp_name'), '/', variables('botServices_contosomonetizationteamsbotcsharp_connection_name'))]",
+          "location": "global",
+          "dependsOn": [
+            "[resourceId('Microsoft.BotService/botServices', variables('botServices_contosomonetizationteamsbotcsharp_name'))]"
+          ],
+          "properties": {
+            "serviceProviderDisplayName": "Azure Active Directory v2",
+            "serviceProviderId": "30dd229c-58e3-4a48-bdfd-91ec48eb906c",
+            "clientId": "[parameters('teamsBotCSharpClientId')]",
+            "clientSecret": "[parameters('teamsBotCSharpClientSecret')]",
+            "scopes": "[concat(parameters('webApiIdentifierUri'),'/user_impersonation')]",
+            "parameters": [
+              {
+                "key": "clientId",
+                "value": "[parameters('teamsBotCSharpClientId')]"
+              },
+              {
+                "key": "clientSecret",
+                "value": "[parameters('teamsBotCSharpClientSecret')]"
+              },
+              {
+                "key": "tenantId",
+                "value": "[parameters('tenantId')]"
+              },
+              {
+                "key": "scopes",
+                "value": "[concat(parameters('webApiIdentifierUri'),'/user_impersonation')]"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "Microsoft.BotService/botServices",
+      "apiVersion": "2018-07-12",
+      "name": "[variables('botServices_contosomonetizationteamsbotjavascript_name')]",
+      "location": "global",
+      "sku": {
+        "name": "F0"
+      },
+      "kind": "bot",
+      "properties": {
+        "displayName": "[variables('botServices_contosomonetizationteamsbotjavascript_name')]",
+        "iconUrl": "https://docs.botframework.com/static/devportal/client/images/bot-framework-default.png",
+        "msaAppId": "[parameters('teamsBotJavaScriptClientId')]",
+        "luisAppIds": [],
+        "endpoint": "https://BOTAPIJAVASCRIPTURL.ngrok.io/api/messages"
+      },
+      "resources": [
+        {
+          "type": "Microsoft.BotService/botServices/channels",
+          "apiVersion": "2018-07-12",
+          "name": "[concat(variables('botServices_contosomonetizationteamsbotjavascript_name'), '/MsTeamsChannel')]",
+          "location": "global",
+          "dependsOn": [
+            "[resourceId('Microsoft.BotService/botServices', variables('botServices_contosomonetizationteamsbotjavascript_name'))]"
+          ],
+          "properties": {
+            "properties": {
+              "enableCalling": false,
+              "isEnabled": true
+            },
+            "channelName": "MsTeamsChannel"
+          }
+        },
+        {
+          "type": "Microsoft.BotService/botServices/channels",
+          "apiVersion": "2018-07-12",
+          "name": "[concat(variables('botServices_contosomonetizationteamsbotjavascript_name'), '/WebChatChannel')]",
+          "location": "global",
+          "dependsOn": [
+            "[resourceId('Microsoft.BotService/botServices', variables('botServices_contosomonetizationteamsbotjavascript_name'))]"
+          ],
+          "properties": {
+            "properties": {
+              "sites": [
+                {
+                  "siteName": "Default Site",
+                  "isEnabled": true,
+                  "enablePreview": true
+                }
+              ]
+            },
+            "channelName": "WebChatChannel"
+          }
+        },
+        {
+          "type": "Microsoft.BotService/botServices/connections",
+          "apiVersion": "2018-07-12",
+          "name": "[concat(variables('botServices_contosomonetizationteamsbotjavascript_name'), '/', variables('botServices_contosomonetizationteamsbotjavascript_connection_name'))]",
+          "location": "global",
+          "dependsOn": [
+            "[resourceId('Microsoft.BotService/botServices', variables('botServices_contosomonetizationteamsbotjavascript_name'))]"
+          ],
+          "properties": {
+            "serviceProviderDisplayName": "Azure Active Directory v2",
+            "serviceProviderId": "30dd229c-58e3-4a48-bdfd-91ec48eb906c",
+            "clientId": "[parameters('teamsBotJavaScriptClientId')]",
+            "clientSecret": "[parameters('teamsBotJavaScriptClientSecretd')]",
+            "scopes": "[concat(parameters('webApiIdentifierUri'),'/user_impersonation')]",
+            "parameters": [
+              {
+                "key": "clientId",
+                "value": "[parameters('teamsBotJavaScriptClientId')]"
+              },
+              {
+                "key": "clientSecret",
+                "value": "[parameters('teamsBotJavaScriptClientSecretd')]"
+              },
+              {
+                "key": "tenantId",
+                "value": "[parameters('tenantId')]"
+              },
+              {
+                "key": "scopes",
+                "value": "[concat(parameters('webApiIdentifierUri'),'/user_impersonation')]"
+              }
+            ]
+          }
+        }
+      ]
     }
   ],
-    "outputs": {
-      "webSiteUri": {
-        "type": "string",
-        "value": "[reference(concat('Microsoft.Web/sites/', parameters('webAppSiteName'))).hostnames[0]]"
-      },
-      "sqlSvrFqdn": {
-        "type": "string",
-        "value": "[reference(concat('Microsoft.Sql/servers/', variables('sqlServerName'))).fullyQualifiedDomainName]"
-      }
+  "outputs": {
+    "webSiteUri": {
+      "type": "string",
+      "value": "[reference(concat('Microsoft.Web/sites/', parameters('webAppSiteName'))).hostnames[0]]"
+    },
+    "sqlSvrFqdn": {
+      "type": "string",
+      "value": "[reference(concat('Microsoft.Sql/servers/', variables('sqlServerName'))).fullyQualifiedDomainName]"
     }
   }
-  
+}

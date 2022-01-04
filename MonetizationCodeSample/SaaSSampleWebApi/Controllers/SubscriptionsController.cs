@@ -100,44 +100,6 @@ namespace SaaSSampleWebApi.Controllers
         }
 
         /// <summary>
-        /// add quantity for a specific subscription
-        /// </summary>
-        [Route("{subscriptionId}/AddLicenseQuantity")]
-        [HttpPost]
-        public async Task<IActionResult> AddQuantityAsync(Guid subscriptionId, [FromForm] int quantity)
-        {
-            var subscription = _licenseDbContext.Subscriptions.Where(subscription => subscription.Id == subscriptionId).SingleOrDefault();
-
-            if (subscription == null) return BadRequest();
-
-            using var requestMessage = new HttpRequestMessage(HttpMethod.Patch,
-                $"{_configuration["SaaSfulfillmentAPIs:ApiEndPoint"]}/api/saas/subscriptions/{subscription.Id}?api-version={_configuration["SaaSfulfillmentAPIs:ApiVersion"]}");
-
-            // the token is not required for Mock APIs 
-            //requestMessage.Headers.Authorization =new AuthenticationHeaderValue("Bearer", your_token);
-
-            using var stringContent = new StringContent(
-                JsonConvert.SerializeObject(
-                    new SubscriptionPayload()
-                    {
-                        Quantity = quantity + subscription.PurchaseSeatsCount
-                    }),
-                Encoding.UTF8,
-                "application/json");
-            requestMessage.Content = stringContent;
-
-            var httpClient = _httpClientFactory.CreateClient();
-            using (var response = await httpClient.SendAsync(requestMessage).ConfigureAwait(false))
-            {
-                if (response.StatusCode == HttpStatusCode.Accepted)
-                {
-                    return NoContent();
-                }
-                return BadRequest(response.ReasonPhrase);
-            }
-        }
-
-        /// <summary>
         /// delete a subscription by id
         /// </summary>
         [HttpDelete("{subscriptionId}")]
@@ -151,7 +113,7 @@ namespace SaaSSampleWebApi.Controllers
                 $"{_configuration["SaaSfulfillmentAPIs:ApiEndPoint"]}/api/saas/subscriptions/{subscription.Id}?api-version={_configuration["SaaSfulfillmentAPIs:ApiVersion"]}");
 
             // the token is not required for Mock APIs 
-            //requestMessage.Headers.Authorization =new AuthenticationHeaderValue("Bearer", your_token);
+            // requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", your_token);
 
             var httpClient = _httpClientFactory.CreateClient();
 
@@ -177,7 +139,7 @@ namespace SaaSSampleWebApi.Controllers
                 $"{_configuration["SaaSfulfillmentAPIs:ApiEndPoint"]}/api/saas/subscriptions/resolve?api-version={_configuration["SaaSfulfillmentAPIs:ApiVersion"]}");
 
             // the token is not required for Mock APIs 
-            //requestMessage.Headers.Authorization =new AuthenticationHeaderValue("Bearer", your_token);
+            // requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", your_token);
 
             requestMessage.Headers.Add("x-ms-marketplace-token", AuthCode);
 
@@ -224,7 +186,7 @@ namespace SaaSSampleWebApi.Controllers
                 $"{_configuration["SaaSfulfillmentAPIs:ApiEndPoint"]}/api/saas/subscriptions/{subscription.Id}/activate?api-version={_configuration["SaaSfulfillmentAPIs:ApiVersion"]}");
 
             // the token is not required for Mock APIs 
-            //requestMessage.Headers.Authorization =new AuthenticationHeaderValue("Bearer", your_token);
+            // requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", your_token);
 
             var activatePayload = new SubscriptionPayload()
             {

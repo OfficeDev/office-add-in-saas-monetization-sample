@@ -68,6 +68,10 @@ namespace ProviderHostedAddInWeb.Controllers
 
                 var authResult = await authResultBuilder.ExecuteAsync();
                 var activation = await _assignedUserService.Activate($"{SaaSAPI}/{OfferID}", authResult.AccessToken);
+                if (!activation.AvailableLicenseQuantity.HasValue)
+                {
+                    activation.AvailableLicenseQuantity = 0;
+                }
                 ViewBag.accountName = authResult.Account.Username;
                 return View(activation);
 
