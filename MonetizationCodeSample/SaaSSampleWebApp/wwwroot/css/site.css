@@ -12,6 +12,7 @@ body {
     flex-direction: column;
     color: #000;
     line-height: normal;
+    background-color: lightblue;
 }
 
 main {
