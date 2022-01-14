@@ -25,12 +25,13 @@
         }
 
         $(function () {
-            microsoftTeams.initialize();
-            microsoftTeams.settings.registerOnSaveHandler(function (saveEvent) {
-                microsoftTeams.settings.setSettings(createTabSettings());
-                saveEvent.notifySuccess();
+            microsoftTeams.initialize(() => {
+                microsoftTeams.settings.registerOnSaveHandler(function (saveEvent) {
+                    microsoftTeams.settings.setSettings(createTabSettings());
+                    saveEvent.notifySuccess();
+                });
+                microsoftTeams.settings.setValidityState(true);
             });
-            microsoftTeams.settings.setValidityState(true)
         });
     </script>
 }
