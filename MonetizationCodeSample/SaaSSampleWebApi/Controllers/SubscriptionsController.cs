@@ -221,7 +221,7 @@ namespace SaaSSampleWebApi.Controllers
             var userId = Guid.Parse(HttpContext.User.GetObjectId());
 
             var subscription = _licenseDbContext.Subscriptions.Where(subscription =>
-                subscription.OfferId == offerId && subscription.TenantId == tenantId).SingleOrDefault();
+                subscription.OfferId == offerId && subscription.TenantId == tenantId).FirstOrDefault();
 
             if (subscription == null)
             {
