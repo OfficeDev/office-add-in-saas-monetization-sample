@@ -1,0 +1,314 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "webAppSiteName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the web app that you wish to create."
+      }
+    },
+    "webApiSiteName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the web api that you wish to create."
+      }
+    },
+    "resourceMockWebSiteName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the mocked resource site that you wish to create."
+      }
+    },
+    "domainName": {
+      "type": "string",
+      "metadata": {
+        "description": "Primary domain name"
+      }
+    },
+    "directoryId": {
+      "type": "string",
+      "metadata": {
+        "description": "Directory (tenant) ID"
+      }
+    },
+    "sqlAdministratorLogin": {
+      "type": "string",
+      "metadata": {
+        "description": "The admin user of the SQL Server"
+      }
+    },
+    "sqlAdministratorLoginPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "The password of the admin user of the SQL Server"
+      }
+    },
+    "sqlMockDatabaseName": {
+      "type": "string",
+      "defaultValue": "AppSourceMockWebAppDB",
+      "metadata": {
+        "description": "Database Name"
+      }
+    },
+    "sqlSampleDatabaseName": {
+      "type": "string",
+      "defaultValue": "MonetizationSampleDB",
+      "metadata": {
+        "description": "Database Name"
+      }
+    },
+    "webAppClientId": {
+      "type": "string"
+    },
+    "webAppClientSecret": {
+      "type": "string"
+    },
+    "webApiClientId": {
+      "type": "string"
+    },
+    "webApiClientSecret": {
+      "type": "string"
+    },
+      
+    "sourceMockClientId": {
+      "type": "string"
+    },
+    "webApiIdentifierUri": {
+      "type": "string"
+    },
+    "tenantId": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
+    "sqlServerName": "[concat('sqlserver', uniqueString(resourceGroup().id))]",
+    "webApiBaseAddress": "[concat('https://', parameters('webApiSiteName'), '.azurewebsites.net')]",
+    "webAppBaseAddress": "[concat('https://', parameters('webAppSiteName'), '.azurewebsites.net')]",
+    "resourceMockBaseAddress": "[concat('https://', parameters('resourceMockWebSiteName'), '.azurewebsites.net')]"
+    
+  },
+  "resources": [
+    {
+      "name": "[variables('sqlServerName')]",
+      "type": "Microsoft.Sql/servers",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "SqlServer"
+      },
+      "apiVersion": "2014-04-01",
+      "properties": {
+        "administratorLogin": "[parameters('sqlAdministratorLogin')]",
+        "administratorLoginPassword": "[parameters('sqlAdministratorLoginPassword')]",
+        "version": "12.0"
+      },
+      "resources": [
+        {
+          "name": "[parameters('sqlMockDatabaseName')]",
+          "type": "databases",
+          "location": "[resourceGroup().location]",
+          "tags": {
+            "displayName": "Database"
+          },
+          "apiVersion": "2014-04-01",
+          "dependsOn": ["[variables('sqlServerName')]"],
+          "properties": {
+            "edition": "Basic",
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "maxSizeBytes": "1073741824",
+            "requestedServiceObjectiveName": "Basic"
+          }
+        },
+        {
+          "name": "[parameters('sqlSampleDatabaseName')]",
+          "type": "databases",
+          "location": "[resourceGroup().location]",
+          "tags": {
+            "displayName": "Database"
+          },
+          "apiVersion": "2014-04-01",
+          "dependsOn": ["[variables('sqlServerName')]"],
+          "properties": {
+            "edition": "Basic",
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "maxSizeBytes": "1073741824",
+            "requestedServiceObjectiveName": "Basic"
+          }
+        },
+        {
+          "type": "firewallRules",
+          "apiVersion": "2014-04-01",
+          "dependsOn": ["[variables('sqlServerName')]"],
+          "location": "[resourceGroup().location]",
+          "name": "AllowAllWindowsAzureIps",
+          "properties": {
+            "endIpAddress": "0.0.0.0",
+            "startIpAddress": "0.0.0.0"
+          }
+        }
+      ]
+    },
+    {
+      "apiVersion": "2018-02-01",
+      "name": "[variables('hostingPlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "HostingPlan"
+      },
+      "sku": {
+        "tier": "Basic",
+        "name": "B1"
+      },
+      "properties": {
+        "name": "[variables('hostingPlanName')]"
+      }
+    },
+    {
+      "apiVersion": "2018-02-01",
+      "name": "[parameters('webAppSiteName')]",
+      "type": "Microsoft.Web/sites",
+      "location": "[resourceGroup().location]",
+      "dependsOn": ["[variables('hostingPlanName')]"],
+      "tags": {
+        "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName')))]": "empty",
+        "displayName": "Website"
+      },
+      "properties": {
+        "name": "[parameters('webAppSiteName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+        "siteConfig": {
+          "alwaysOn": false
+        }
+      },
+      "resources": [
+        {
+          "apiVersion": "2018-02-01",
+          "type": "config",
+          "name": "appsettings",
+          "dependsOn": ["[parameters('webAppSiteName')]"],
+          "properties": {
+            "AzureAd:Domain": "[parameters('domainName')]",
+            "AzureAd:DirectoryId": "[parameters('directoryId')]",
+            "AzureAd:TenantId": "[parameters('tenantId')]",
+            "AzureAd:ClientId": "[parameters('webAppClientId')]",
+            "AzureAd:ClientSecret": "[parameters('webAppClientSecret')]",
+            "SaaSWebApi:Scopes": "[concat(parameters('webApiIdentifierUri'),'/user_impersonation')]",
+            "SaaSWebApi:BaseAddress": "[variables('webApiBaseAddress')]",
+            "AppSource": "[concat(variables('resourceMockBaseAddress'), '/')]"
+          }
+        }
+      ]
+    },
+    {
+      "apiVersion": "2018-02-01",
+      "name": "[parameters('webApiSiteName')]",
+      "type": "Microsoft.Web/sites",
+      "location": "[resourceGroup().location]",
+      "dependsOn": ["[variables('hostingPlanName')]"],
+      "tags": {
+        "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName')))]": "empty",
+        "displayName": "Website"
+      },
+      "properties": {
+        "name": "[parameters('webApiSiteName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+        "siteConfig": {
+          "alwaysOn": false
+        }
+      },
+      "resources": [
+        {
+          "apiVersion": "2018-02-01",
+          "type": "config",
+          "name": "connectionstrings",
+          "dependsOn": [
+            "[parameters('webApiSiteName')]",
+            "[variables('sqlServerName')]"
+          ],
+          "properties": {
+            "DefaultConnection": {
+              "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', variables('sqlServerName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('sqlSampleDatabaseName'), ';User Id=', parameters('sqlAdministratorLogin'), '@', reference(concat('Microsoft.Sql/servers/', variables('sqlServerName'))).fullyQualifiedDomainName, ';Password=', parameters('sqlAdministratorLoginPassword'), ';')]",
+              "type": "SQLAzure"
+            }
+          }
+        },
+        {
+          "apiVersion": "2018-02-01",
+          "type": "config",
+          "name": "appsettings",
+          "dependsOn": ["[parameters('webApiSiteName')]"],
+          "properties": {
+            "AzureAd:Domain": "[parameters('domainName')]",
+            "AzureAd:TenantId": "[parameters('tenantId')]",
+            "AzureAd:ClientId": "[parameters('webApiClientId')]",
+            "AzureAd:ClientSecret": "[parameters('webApiClientSecret')]",
+            "SaaSfulfillmentAPIs:ApiEndPoint": "[variables('resourceMockBaseAddress')]",
+            "SaaSfulfillmentAPIs:ApiVersion": "2018-09-15"
+          }
+        }
+      ]
+    },
+
+    {
+      "apiVersion": "2018-02-01",
+      "name": "[parameters('resourceMockWebSiteName')]",
+      "type": "Microsoft.Web/sites",
+      "location": "[resourceGroup().location]",
+      "dependsOn": ["[variables('hostingPlanName')]"],
+      "tags": {
+        "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName')))]": "empty",
+        "displayName": "Website"
+      },
+      "properties": {
+        "name": "[parameters('resourceMockWebSiteName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+        "siteConfig": {
+          "alwaysOn": false
+        }
+      },
+      "resources": [
+        {
+          "apiVersion": "2018-02-01",
+          "type": "config",
+          "name": "connectionstrings",
+          "dependsOn": [
+            "[parameters('resourceMockWebSiteName')]",
+            "[variables('sqlServerName')]"
+          ],
+          "properties": {
+            "DefaultConnection": {
+              "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', variables('sqlServerName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('sqlMockDatabaseName'), ';User Id=', parameters('sqlAdministratorLogin'), '@', reference(concat('Microsoft.Sql/servers/', variables('sqlServerName'))).fullyQualifiedDomainName, ';Password=', parameters('sqlAdministratorLoginPassword'), ';')]",
+              "type": "SQLAzure"
+            }
+          }
+        },
+        {
+          "apiVersion": "2018-02-01",
+          "type": "config",
+          "name": "appsettings",
+          "dependsOn": ["[parameters('resourceMockWebSiteName')]"],
+          "properties": {
+            "AzureAd:Domain": "[parameters('domainName')]",
+            "AzureAd:TenantId": "[parameters('tenantId')]",
+            "AzureAd:ClientId": "[parameters('sourceMockClientId')]",
+            "SaaSOffer:LandingpageURL": "[concat(variables('webAppBaseAddress'),'/Fulfilment')]",
+            "SaaSOffer:Connectionwebhook": "[concat(variables('webApiBaseAddress'),'/api/webhook')]"
+          }
+        }
+      ]
+    }
+  
+  ],
+  "outputs": {
+    "webSiteUri": {
+      "type": "string",
+      "value": "[reference(concat('Microsoft.Web/sites/', parameters('webAppSiteName'))).hostnames[0]]"
+    },
+    "sqlSvrFqdn": {
+      "type": "string",
+      "value": "[reference(concat('Microsoft.Sql/servers/', variables('sqlServerName'))).fullyQualifiedDomainName]"
+    }
+  }
+}
