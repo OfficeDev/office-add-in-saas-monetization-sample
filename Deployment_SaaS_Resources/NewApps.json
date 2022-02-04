@@ -1,0 +1,107 @@
+{
+  "apps": [
+    {
+      "appName": "webApp",
+      "passwordCredential": {
+        "displayName": "devKey"
+      },
+      "bodyParameter": {
+        "displayName": "Contoso Monetization Code Sample Web App Dev",
+        "signInAudience": "AzureADMultipleOrgs",
+        "requiredResourceAccess": [
+          {
+            "resourceAppId": "00000003-0000-0000-c000-000000000000",
+            "resourceAccess": [
+              {
+                "Id": "0e263e50-5827-48a4-b97c-d940288653c7",
+                "Type": "Scope"
+              },
+              {
+                "Id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+                "Type": "Scope"
+              }
+            ]
+          }
+        ],
+        "implicitGrantSettingEnableIdTokenIssuance": true
+      }
+    },
+    {
+      "appName": "webApi",
+      "passwordCredential": {
+        "displayName": "devKey"
+      },
+      "bodyParameter": {
+        "displayName": "Contoso Monetization Code Sample Web API Dev",
+        "signInAudience": "AzureADMultipleOrgs",
+        "requiredResourceAccess": [
+          {
+            "resourceAppId": "00000003-0000-0000-c000-000000000000",
+            "resourceAccess": [
+              {
+                "Id": "64a6cdd6-aab1-4aaf-94b8-3cc8405e90d0",
+                "Type": "Scope"
+              },
+              {
+                "Id": "7427e0e9-2fba-42fe-b0c0-848c9e6a8182",
+                "Type": "Scope"
+              },
+              {
+                "Id": "37f7f235-527c-4136-accd-4a02d197296e",
+                "Type": "Scope"
+              },
+              {
+                "Id": "14dad69e-099b-42c9-810b-d002981feec1",
+                "Type": "Scope"
+              },
+              {
+                "Id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+                "Type": "Scope"
+              }
+            ]
+          }
+        ],
+        "apiOauth2PermissionScopes": {
+          "userConsentDisplayName": "Access ContosoMonetizationWebAPI as a user",
+          "userConsentDescription": "Accesses Contoso Monetization WebAPI as a user",
+          "adminConsentDisplayName": "Access ContosoMonetizationWebAPI as an admin",
+          "adminConsentDescription": "Accesses Contoso Monetization WebAPI as an admin",
+          "id": "0cdca35a-e16c-4d79-9751-c353ae328f93",
+          "isEnabled": true,
+          "type": "User",
+          "Value": "user_impersonation"
+        }
+      }
+    },
+    {
+      "appName": "appResource",
+      "passwordCredential": {
+        "displayName": "devKey"
+      },
+      "bodyParameter": {
+        "displayName": "Contoso Monetization Code Sample App source Dev",
+        "signInAudience": "AzureADMultipleOrgs",
+        "requiredResourceAccess": [
+          {
+            "resourceAppId": "00000003-0000-0000-c000-000000000000",
+            "resourceAccess": [
+              {
+                "Id": "64a6cdd6-aab1-4aaf-94b8-3cc8405e90d0",
+                "Type": "Scope"
+              },
+              {
+                "Id": "37f7f235-527c-4136-accd-4a02d197296e",
+                "Type": "Scope"
+              },
+              {
+                "Id": "14dad69e-099b-42c9-810b-d002981feec1",
+                "Type": "Scope"
+              }
+            ]
+          }
+        ],
+        "implicitGrantSettingEnableIdTokenIssuance": true
+      }
+    }
+  ]
+}

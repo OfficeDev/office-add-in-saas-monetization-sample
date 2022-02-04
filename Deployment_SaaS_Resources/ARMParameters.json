@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "webAppSiteName": {
+      "value": "contosomonetizationwebapp"
+    },
+    "webApiSiteName": {
+      "value": "contosomonetizationwebapi"
+    },   
+    "resourceMockWebSiteName": {
+      "value": "contosomonetizationappsource"
+    },
+    "domainName": {
+      "value": "m365404404.onmicrosoft.com"
+    },
+    "directoryId": {
+      "value": "c5489ec7-a322-45cf-a170-7ce0bdb538c5"
+    },
+    "sqlAdministratorLogin": {
+      "value": "Monetizationadmin"
+    },
+    "sqlAdministratorLoginPassword": {
+      "value": "pass@Word2022"
+    },
+    "sqlMockDatabaseName": {
+      "value": "AppSourceMockWebAppDB"
+    },
+    "sqlSampleDatabaseName": {
+      "value": "MonetizationSampleDB"
+    },
+    "webAppClientId": {
+      "value": ""
+    },
+    "webAppClientSecret": {
+      "value": ""
+    },
+    "webApiClientId": {
+      "value": ""
+    },
+    "webApiClientSecret": {
+      "value": ""
+    },
+    "webApiIdentifierUri": {
+      "value": ""
+    },    
+    "sourceMockClientId": {
+      "value": ""
+    },
+    "tenantId": {
+      "value": "organizations"
+    }
+  }
+}
