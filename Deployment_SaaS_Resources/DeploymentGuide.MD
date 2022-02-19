@@ -67,13 +67,13 @@ This sample uses three Azure Active Directory applications.
 
 1. Click **Accept**.
 
-   ![Code Path](Images/5.png)
+   ![Code Path](../Deployment/Images/5.png)
 
 1. In the same window run `.\InstallApps.ps1`
 
 1. Create and configure Azure AD apps successfully.
 
-   ![Code Path](Images/14.png)
+   ![Code Path](../Deployment/Images/14.png)
 
 1. Copy the values from the output and later you will need some of these values to update the code and config file for deploying Add-ins.
 
@@ -81,21 +81,21 @@ This sample uses three Azure Active Directory applications.
 
 1. Open PowerShell 7 and run the Powershell command `Connect-AzAccount`.
 
-   ![Code Path](Images/7.png)
+   ![Code Path](../Deployment/Images/7.png)
 
 1. Run the script `.\DeployTemplate.ps1`. When prompted, enter the name of the resource group to create.
 
-   ![Code Path](Images/8.png)
+   ![Code Path](../Deployment/Images/8.png)
 
 1. Deploy ARM Template successfully.
 
-   ![Code Path](Images/9.png)
+   ![Code Path](../Deployment/Images/9.png)
 
 ## Compile and deploy the server code
 
   >**Note:** Please make sure that the default NuGet package source **https://api.nuget.org/v3/index.json** is correctly added in Visual Studio 2019.
 
-  ![Code Path](Images/23.png)
+  ![Code Path](../Deployment/Images/23.png)
 
 1. In the command line, change to the **.\MonetizationCodeSample** directory.
 
@@ -107,7 +107,7 @@ This sample uses three Azure Active Directory applications.
 
     >**Note:** You may see some warnings about file expiration, please ignore.
 
-   ![Code Path](Images/10.png)
+   ![Code Path](../Deployment/Images/10.png)
 
 ## Clean up
 
