@@ -20,7 +20,7 @@
     "express-msteams-host": "1.6.2",
     "express-session": "1.15.6",
     "morgan": "1.9.1",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.7"
   },
   "devDependencies": {
     "@types/debug": "4.1.2",
