@@ -59,7 +59,7 @@ namespace SaaSSampleWebApp.Services
             var token = _tokenAcquisition.GetAccessTokenOnBehalfOfUserAsync(_configuration["SaaSWebApi:Scopes"].Split(' '));
 
             using var requestMessage = new HttpRequestMessage(HttpMethod.Get,
-                $"{_configuration["SaaSWebApi:BaseAddress"]}/api/Subscriptions/{subscriptionId}/licenseManagers");
+                $"{_configuration["SaaSWebApi:BaseAddress"]}/api/Subscriptions/{subscriptionId}/licenseManagers/{userId}");
 
             // the token is not required for Mock APIs 
             requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", await token);
