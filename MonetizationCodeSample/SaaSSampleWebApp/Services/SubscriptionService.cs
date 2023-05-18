@@ -70,7 +70,7 @@ namespace SaaSSampleWebApp.Services
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var result = await response.Content.ReadAsStringAsync();
-                var licenseManager = JsonConvert.DeserializeObject<LicenseManager>(result);
+                var licenseManager = JsonConvert.DeserializeObject<List<LicenseManager>>(result)[0];
                 return licenseManager;
             }
 
